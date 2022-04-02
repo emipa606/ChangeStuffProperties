@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CSP.settings>Settings</CSP.settings>
+  <CSP.resetall.label>Manual config reset</CSP.resetall.label>
+  <CSP.resetall.tooltip>Reset all modified values</CSP.resetall.tooltip>
+  <CSP.resetall.button>Reset all</CSP.resetall.button>
+  <CSP.resetall.confirm>This will reset ALL values to vanilla values for all stuff</CSP.resetall.confirm>
+  <CSP.resetone.confirm>This will reset the values for {0} to vanilla values</CSP.resetone.confirm>
+  <CSP.logging.label>Enable verbose logging</CSP.logging.label>
+  <CSP.logging.tooltip>Shows verbose logging, for finding errors</CSP.logging.tooltip>
+  <CSP.version.label>Installed mod-version: {0}</CSP.version.label>
+  <CSP.reset.button>Reset</CSP.reset.button>
+  <CSP.undo.button>Undo</CSP.undo.button>
+  <CSP.save.button>Save</CSP.save.button>
+  <CSP.search>Search stuff</CSP.search>
+  <CSP.customexists>Has custom values defined</CSP.customexists>
+  <CSP.commonality>Commonality</CSP.commonality>
+  <CSP.commonality.tooltip>How often this stuff is chosen when generating items</CSP.commonality.tooltip>
+  <CSP.mass>Mass</CSP.mass>
+  <CSP.mass.tooltip>The mass for each unit</CSP.mass.tooltip>
+  <CSP.marketvalue>Market Value</CSP.marketvalue>
+  <CSP.marketvalue.tooltip>Market value for each unit</CSP.marketvalue.tooltip>
+</LanguageData>
