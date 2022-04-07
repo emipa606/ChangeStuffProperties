@@ -6,6 +6,14 @@ namespace ChangeStuffProperties;
 
 public class ChangeStuffProperties_Settings : ModSettings
 {
+    private List<string> customBeautyMultiplierKeys;
+    public Dictionary<string, float> CustomBeautyMultipliers;
+
+    private List<float> customBeautyMultiplierValues;
+    private List<string> customBeautyOffsetKeys;
+    public Dictionary<string, float> CustomBeautyOffsets;
+
+    private List<float> customBeautyOffsetValues;
     public Dictionary<string, float> CustomCommonality;
 
     private List<string> customCommonalityKeys;
@@ -38,6 +46,14 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customMarketValueKeys, ref customMarketValueValues);
+        Scribe_Collections.Look(ref CustomBeautyOffsets, "CustomBeautyOffsets",
+            LookMode.Value,
+            LookMode.Value,
+            ref customBeautyOffsetKeys, ref customBeautyOffsetValues);
+        Scribe_Collections.Look(ref CustomBeautyOffsets, "CustomBeautyMultiplier",
+            LookMode.Value,
+            LookMode.Value,
+            ref customBeautyMultiplierKeys, ref customBeautyMultiplierValues);
     }
 
     public void Initialize()
@@ -45,6 +61,8 @@ public class ChangeStuffProperties_Settings : ModSettings
         Commonality.Initialize();
         Mass.Initialize();
         MarketValue.Initialize();
+        BeautyOffset.Initialize();
+        BeautyMultiplier.Initialize();
     }
 
     public void ResetValues(string valueLabel)
@@ -72,6 +90,22 @@ public class ChangeStuffProperties_Settings : ModSettings
             CustomMarketValue = new Dictionary<string, float>();
             MarketValue.ResetMarketValueToVanillaRates();
         }
+
+        if (valueLabel is "beautyoffset" or "all")
+        {
+            customBeautyOffsetKeys = new List<string>();
+            customBeautyOffsetValues = new List<float>();
+            CustomBeautyOffsets = new Dictionary<string, float>();
+            BeautyOffset.ResetBeautyOffsetToVanillaRates();
+        }
+
+        if (valueLabel is "beautymultiplier" or "all")
+        {
+            customBeautyMultiplierKeys = new List<string>();
+            customBeautyMultiplierValues = new List<float>();
+            CustomBeautyMultipliers = new Dictionary<string, float>();
+            BeautyMultiplier.ResetBeautyMultiplierToVanillaRates();
+        }
     }
 
     public bool HasCustomValues(string type = null)
@@ -81,6 +115,8 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "commonality" when CustomCommonality?.Any() == true:
             case null or "mass" when CustomMass?.Any() == true:
             case null or "marketvalue" when CustomMarketValue?.Any() == true:
+            case null or "beautyoffset" when CustomBeautyOffsets?.Any() == true:
+            case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
                 return true;
             default:
                 return false;

@@ -38,9 +38,6 @@ public class ChangeStuffProperties_Mod : Mod
 
     private static string searchText = "";
 
-    public static List<string> CurrentTags;
-    public static string TagStage;
-
     private static readonly Color alternateBackground = new Color(0.1f, 0.1f, 0.1f, 0.5f);
 
     private static readonly List<string> settingTabs = new List<string>
@@ -49,7 +46,9 @@ public class ChangeStuffProperties_Mod : Mod
         null,
         "Commonality",
         "Mass",
-        "MarketValue"
+        "MarketValue",
+        "BeautyOffset",
+        "BeautyMultiplier"
     };
 
     /// <summary>
@@ -266,6 +265,18 @@ public class ChangeStuffProperties_Mod : Mod
                     MarketValue.VanillaMarketValues, "marketvalue");
                 break;
             }
+            case "BeautyOffset":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomBeautyOffsets,
+                    BeautyOffset.VanillaBeautyOffsets, "beautyoffset");
+                break;
+            }
+            case "BeautyMultiplier":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomBeautyMultipliers,
+                    BeautyMultiplier.VanillaBeautyMultipliers, "beautymultiplier");
+                break;
+            }
         }
     }
 
@@ -437,6 +448,78 @@ public class ChangeStuffProperties_Mod : Mod
                             thingDef.BaseMarketValue.ToStringMoney(),
                             thingLabel,
                             modInfo), 2));
+                    break;
+                case "beautyoffset":
+                    if (thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statOffsets == null)
+                    {
+                        thingDef.stuffProps.statOffsets = new List<StatModifier>();
+                    }
+
+                    if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
+                    {
+                        thingDef.stuffProps.statOffsets.Add(new StatModifier { stat = StatDefOf.Beauty, value = 0 });
+                    }
+
+                    thingDef.stuffProps.statOffsets.First(modifier => modifier.stat == StatDefOf.Beauty).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty), 0,
+                            40f, false,
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty)
+                                .ToStringDecimalIfSmall(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
+                case "beautymultiplier":
+                    if (thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statFactors == null)
+                    {
+                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                    }
+
+                    if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
+                    {
+                        thingDef.stuffProps.statFactors.Add(new StatModifier { stat = StatDefOf.Beauty, value = 1f });
+                    }
+
+                    thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.Beauty).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty), 0,
+                            5f, false,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty)
+                                .ToStringPercentEmptyZero(),
+                            thingLabel,
+                            modInfo), 4);
                     break;
             }
 

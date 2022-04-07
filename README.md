@@ -15,6 +15,7 @@ You can currently modify the following properties on all stuff, vanilla and modd
 
 
 If you have suggestions of other properties that you would like to be able to change just leave a comment and I'll look into adding it.
+If you want to change with more precision, try the https://steamcommunity.com/sharedfiles/filedetails/?id=2218078784]Better Sliders mod
 	
 
 ![Image](https://i.imgur.com/O0IIlYj.png)

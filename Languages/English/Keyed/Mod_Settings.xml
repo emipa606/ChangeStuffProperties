@@ -20,4 +20,8 @@
   <CSP.mass.tooltip>The mass for each unit</CSP.mass.tooltip>
   <CSP.marketvalue>Market Value</CSP.marketvalue>
   <CSP.marketvalue.tooltip>Market value for each unit</CSP.marketvalue.tooltip>
+  <CSP.beautyoffset>Beauty offset</CSP.beautyoffset>
+  <CSP.beautyoffset.tooltip>Added beauty-value when used as building material</CSP.beautyoffset.tooltip>
+  <CSP.beautymultiplier>Beauty multiplier</CSP.beautymultiplier>
+  <CSP.beautymultiplier.tooltip>Beauty multiplier when used as building material</CSP.beautymultiplier.tooltip>
 </LanguageData>
