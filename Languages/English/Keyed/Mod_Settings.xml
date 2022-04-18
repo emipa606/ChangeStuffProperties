@@ -23,5 +23,9 @@
   <CSP.beautyoffset>Beauty offset</CSP.beautyoffset>
   <CSP.beautyoffset.tooltip>Added beauty-value when used as building material</CSP.beautyoffset.tooltip>
   <CSP.beautymultiplier>Beauty multiplier</CSP.beautymultiplier>
-  <CSP.beautymultiplier.tooltip>Beauty multiplier when used as building material</CSP.beautymultiplier.tooltip>
+  <CSP.beautymultiplier.tooltip>Beauty multiplier when used as material in recipes</CSP.beautymultiplier.tooltip>
+  <CSP.flammability>Flammability</CSP.flammability>
+  <CSP.flammability.tooltip>Flammability when used as a building material</CSP.flammability.tooltip>
+  <CSP.flammabilityfactor>Flammability multiplier</CSP.flammabilityfactor>
+  <CSP.flammabilityfactor.tooltip>Flammability multiplier when used as material in recipes</CSP.flammabilityfactor.tooltip>
 </LanguageData>

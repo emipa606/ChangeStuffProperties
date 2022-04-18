@@ -48,7 +48,9 @@ public class ChangeStuffProperties_Mod : Mod
         "Mass",
         "MarketValue",
         "BeautyOffset",
-        "BeautyMultiplier"
+        "BeautyMultiplier",
+        "Flammability",
+        "FlammabilityFactor"
     };
 
     /// <summary>
@@ -150,18 +152,18 @@ public class ChangeStuffProperties_Mod : Mod
         var texture = thing.graphicData?.Graphic?.MatSingle?.mainTexture;
         if (thing.graphicData?.graphicClass == typeof(Graphic_Random))
         {
-            texture = ((Graphic_Random)thing.graphicData.Graphic)?.FirstSubgraphic().MatSingle.mainTexture;
+            texture = ((Graphic_Random)thing.graphicData.Graphic)?.FirstSubgraphic()?.MatSingle?.mainTexture;
         }
 
         if (thing.graphicData?.graphicClass == typeof(Graphic_StackCount))
         {
-            texture = ((Graphic_StackCount)thing.graphicData.Graphic)?.SubGraphicForStackCount(1, thing).MatSingle
+            texture = ((Graphic_StackCount)thing.graphicData.Graphic)?.SubGraphicForStackCount(1, thing)?.MatSingle?
                 .mainTexture;
         }
 
         if (texture == null)
         {
-            return;
+            texture = BaseContent.BadTex;
         }
 
         var toolTip = $"{thing.LabelCap}\n{thing.description}";
@@ -275,6 +277,18 @@ public class ChangeStuffProperties_Mod : Mod
             {
                 FloatScrollView(ref frameRect, ref instance.Settings.CustomBeautyMultipliers,
                     BeautyMultiplier.VanillaBeautyMultipliers, "beautymultiplier");
+                break;
+            }
+            case "Flammability":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomFlammability,
+                    Flammability.VanillaFlammability, "flammability");
+                break;
+            }
+            case "FlammabilityFactor":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomFlammabilityFactor,
+                    FlammabilityFactor.VanillaFlammabilityFactor, "flammabilityfactor");
                 break;
             }
         }
@@ -517,7 +531,69 @@ public class ChangeStuffProperties_Mod : Mod
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty), 0,
                             5f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty)
-                                .ToStringPercentEmptyZero(),
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
+                case "flammability":
+                    if (thingDef.BaseFlammability !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.BaseFlammability;
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.Mass,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.BaseFlammability, 0f,
+                            2.5f, false,
+                            thingDef.BaseFlammability.ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "flammabilityfactor":
+                    if (thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statFactors == null)
+                    {
+                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                    }
+
+                    if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
+                    {
+                        thingDef.stuffProps.statFactors.Add(new StatModifier
+                            { stat = StatDefOf.Flammability, value = 1f });
+                    }
+
+                    thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.Flammability).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability), 0,
+                            2.5f, false,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability)
+                                .ToStringPercent(),
                             thingLabel,
                             modInfo), 4);
                     break;

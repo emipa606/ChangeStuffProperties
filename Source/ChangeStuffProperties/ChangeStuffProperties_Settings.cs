@@ -19,6 +19,14 @@ public class ChangeStuffProperties_Settings : ModSettings
     private List<string> customCommonalityKeys;
 
     private List<float> customCommonalityValues;
+    public Dictionary<string, float> CustomFlammability;
+    public Dictionary<string, float> CustomFlammabilityFactor;
+    private List<string> customFlammabilityFactorKeys;
+
+    private List<float> customFlammabilityFactorValues;
+    private List<string> customFlammabilityKeys;
+
+    private List<float> customFlammabilityValues;
     public Dictionary<string, float> CustomMarketValue;
 
     private List<string> customMarketValueKeys;
@@ -54,6 +62,14 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customBeautyMultiplierKeys, ref customBeautyMultiplierValues);
+        Scribe_Collections.Look(ref CustomFlammability, "CustomFlammability",
+            LookMode.Value,
+            LookMode.Value,
+            ref customFlammabilityKeys, ref customFlammabilityValues);
+        Scribe_Collections.Look(ref CustomFlammabilityFactor, "CustomFlammabilityFactor",
+            LookMode.Value,
+            LookMode.Value,
+            ref customFlammabilityFactorKeys, ref customFlammabilityFactorValues);
     }
 
     public void Initialize()
@@ -63,6 +79,8 @@ public class ChangeStuffProperties_Settings : ModSettings
         MarketValue.Initialize();
         BeautyOffset.Initialize();
         BeautyMultiplier.Initialize();
+        Flammability.Initialize();
+        FlammabilityFactor.Initialize();
     }
 
     public void ResetValues(string valueLabel)
@@ -106,6 +124,22 @@ public class ChangeStuffProperties_Settings : ModSettings
             CustomBeautyMultipliers = new Dictionary<string, float>();
             BeautyMultiplier.ResetBeautyMultiplierToVanillaRates();
         }
+
+        if (valueLabel is "flammability" or "all")
+        {
+            customFlammabilityKeys = new List<string>();
+            customFlammabilityValues = new List<float>();
+            CustomFlammability = new Dictionary<string, float>();
+            Flammability.ResetFlammabilityToVanillaRates();
+        }
+
+        if (valueLabel is "flammabilityFactor" or "all")
+        {
+            customFlammabilityFactorKeys = new List<string>();
+            customFlammabilityFactorValues = new List<float>();
+            CustomFlammabilityFactor = new Dictionary<string, float>();
+            FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
+        }
     }
 
     public bool HasCustomValues(string type = null)
@@ -117,6 +151,8 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "marketvalue" when CustomMarketValue?.Any() == true:
             case null or "beautyoffset" when CustomBeautyOffsets?.Any() == true:
             case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
+            case null or "flammability" when CustomFlammability?.Any() == true:
+            case null or "flammabilityFactor" when CustomFlammabilityFactor?.Any() == true:
                 return true;
             default:
                 return false;
