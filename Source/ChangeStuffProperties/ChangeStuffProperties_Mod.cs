@@ -149,16 +149,24 @@ public class ChangeStuffProperties_Mod : Mod
             return;
         }
 
-        var texture = thing.graphicData?.Graphic?.MatSingle?.mainTexture;
-        if (thing.graphicData?.graphicClass == typeof(Graphic_Random))
+        Texture texture = BaseContent.BadTex;
+        try
         {
-            texture = ((Graphic_Random)thing.graphicData.Graphic)?.FirstSubgraphic()?.MatSingle?.mainTexture;
-        }
+            texture = thing.graphicData?.Graphic?.MatSingle?.mainTexture;
+            if (thing.graphicData?.graphicClass == typeof(Graphic_Random))
+            {
+                texture = ((Graphic_Random)thing.graphicData.Graphic)?.FirstSubgraphic()?.MatSingle?.mainTexture;
+            }
 
-        if (thing.graphicData?.graphicClass == typeof(Graphic_StackCount))
+            if (thing.graphicData?.graphicClass == typeof(Graphic_StackCount))
+            {
+                texture = ((Graphic_StackCount)thing.graphicData.Graphic)?.SubGraphicForStackCount(1, thing)?.MatSingle?
+                    .mainTexture;
+            }
+        }
+        catch (Exception)
         {
-            texture = ((Graphic_StackCount)thing.graphicData.Graphic)?.SubGraphicForStackCount(1, thing)?.MatSingle?
-                .mainTexture;
+            // ignored
         }
 
         if (texture == null)

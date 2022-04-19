@@ -13,6 +13,8 @@ You can currently modify the following properties on all stuff, vanilla and modd
 - Market value
 - Beauty offset
 - Beauty multiplier
+- Flammability
+- Flammability multiplier
 
 
 
