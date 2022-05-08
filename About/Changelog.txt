@@ -1,5 +1,8 @@
 # Changelog for ChangeStuffProperties
 
+1.3.4 - Added options for Sharp/Blunt damage multiplier, Sharp/Blunt/Heat armor power, Heat/Cold insulation
+
+
 1.3.3 - Should now handle missconfigured mods like Medieval Quest Rewards, that is missing required graphic attributes
 
 

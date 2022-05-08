@@ -14,6 +14,10 @@ public class ChangeStuffProperties_Settings : ModSettings
     public Dictionary<string, float> CustomBeautyOffsets;
 
     private List<float> customBeautyOffsetValues;
+    public Dictionary<string, float> CustomBluntDamageMultiplier;
+    private List<string> customBluntDamageMultiplierKeys;
+
+    private List<float> customBluntDamageMultiplierValues;
     public Dictionary<string, float> CustomCommonality;
 
     private List<string> customCommonalityKeys;
@@ -36,6 +40,30 @@ public class ChangeStuffProperties_Settings : ModSettings
     private List<string> customMassKeys;
 
     private List<float> customMassValues;
+    public Dictionary<string, float> CustomSharpDamageMultiplier;
+    private List<string> customSharpDamageMultiplierKeys;
+
+    private List<float> customSharpDamageMultiplierValues;
+    public Dictionary<string, float> CustomStuffPower_Armor_Blunt;
+    private List<string> customStuffPower_Armor_BluntKeys;
+
+    private List<float> customStuffPower_Armor_BluntValues;
+    public Dictionary<string, float> CustomStuffPower_Armor_Heat;
+    private List<string> customStuffPower_Armor_HeatKeys;
+
+    private List<float> customStuffPower_Armor_HeatValues;
+    public Dictionary<string, float> CustomStuffPower_Armor_Sharp;
+    private List<string> customStuffPower_Armor_SharpKeys;
+
+    private List<float> customStuffPower_Armor_SharpValues;
+    public Dictionary<string, float> CustomStuffPower_Insulation_Cold;
+    private List<string> customStuffPower_Insulation_ColdKeys;
+
+    private List<float> customStuffPower_Insulation_ColdValues;
+    public Dictionary<string, float> CustomStuffPower_Insulation_Heat;
+    private List<string> customStuffPower_Insulation_HeatKeys;
+
+    private List<float> customStuffPower_Insulation_HeatValues;
     public bool VerboseLogging;
 
     public override void ExposeData()
@@ -70,6 +98,34 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customFlammabilityFactorKeys, ref customFlammabilityFactorValues);
+        Scribe_Collections.Look(ref CustomSharpDamageMultiplier, "CustomSharpDamageMultiplier",
+            LookMode.Value,
+            LookMode.Value,
+            ref customSharpDamageMultiplierKeys, ref customSharpDamageMultiplierValues);
+        Scribe_Collections.Look(ref CustomBluntDamageMultiplier, "CustomBluntDamageMultiplier",
+            LookMode.Value,
+            LookMode.Value,
+            ref customBluntDamageMultiplierKeys, ref customBluntDamageMultiplierValues);
+        Scribe_Collections.Look(ref CustomStuffPower_Armor_Sharp, "CustomStuffPower_Armor_Sharp",
+            LookMode.Value,
+            LookMode.Value,
+            ref customStuffPower_Armor_SharpKeys, ref customStuffPower_Armor_SharpValues);
+        Scribe_Collections.Look(ref CustomStuffPower_Armor_Sharp, "CustomStuffPower_Armor_Blunt",
+            LookMode.Value,
+            LookMode.Value,
+            ref customStuffPower_Armor_BluntKeys, ref customStuffPower_Armor_BluntValues);
+        Scribe_Collections.Look(ref CustomStuffPower_Armor_Heat, "CustomStuffPower_Armor_Heat",
+            LookMode.Value,
+            LookMode.Value,
+            ref customStuffPower_Armor_HeatKeys, ref customStuffPower_Armor_HeatValues);
+        Scribe_Collections.Look(ref CustomStuffPower_Insulation_Heat, "CustomStuffPower_Insulation_Heat",
+            LookMode.Value,
+            LookMode.Value,
+            ref customStuffPower_Insulation_HeatKeys, ref customStuffPower_Insulation_HeatValues);
+        Scribe_Collections.Look(ref CustomStuffPower_Armor_Heat, "CustomStuffPower_Insulation_Cold",
+            LookMode.Value,
+            LookMode.Value,
+            ref customStuffPower_Insulation_ColdKeys, ref customStuffPower_Insulation_ColdValues);
     }
 
     public void Initialize()
@@ -81,6 +137,13 @@ public class ChangeStuffProperties_Settings : ModSettings
         BeautyMultiplier.Initialize();
         Flammability.Initialize();
         FlammabilityFactor.Initialize();
+        SharpDamageMultiplier.Initialize();
+        BluntDamageMultiplier.Initialize();
+        StuffPower_Armor_Sharp.Initialize();
+        StuffPower_Armor_Blunt.Initialize();
+        StuffPower_Armor_Heat.Initialize();
+        StuffPower_Insulation_Heat.Initialize();
+        StuffPower_Insulation_Cold.Initialize();
     }
 
     public void ResetValues(string valueLabel)
@@ -133,12 +196,68 @@ public class ChangeStuffProperties_Settings : ModSettings
             Flammability.ResetFlammabilityToVanillaRates();
         }
 
-        if (valueLabel is "flammabilityFactor" or "all")
+        if (valueLabel is "flammabilityfactor" or "all")
         {
             customFlammabilityFactorKeys = new List<string>();
             customFlammabilityFactorValues = new List<float>();
             CustomFlammabilityFactor = new Dictionary<string, float>();
             FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
+        }
+
+        if (valueLabel is "sharpdamagemultiplier" or "all")
+        {
+            customSharpDamageMultiplierKeys = new List<string>();
+            customSharpDamageMultiplierValues = new List<float>();
+            CustomSharpDamageMultiplier = new Dictionary<string, float>();
+            SharpDamageMultiplier.ResetSharpDamageMultiplierToVanillaRates();
+        }
+
+        if (valueLabel is "bluntdamagemultiplier" or "all")
+        {
+            customBluntDamageMultiplierKeys = new List<string>();
+            customBluntDamageMultiplierValues = new List<float>();
+            CustomBluntDamageMultiplier = new Dictionary<string, float>();
+            BluntDamageMultiplier.ResetBluntDamageMultiplierToVanillaRates();
+        }
+
+        if (valueLabel is "stuffpowerarmorsharp" or "all")
+        {
+            customStuffPower_Armor_SharpKeys = new List<string>();
+            customStuffPower_Armor_SharpValues = new List<float>();
+            CustomStuffPower_Armor_Sharp = new Dictionary<string, float>();
+            StuffPower_Armor_Sharp.ResetStuffPower_Armor_SharpToVanillaRates();
+        }
+
+        if (valueLabel is "stuffpowerarmorblunt" or "all")
+        {
+            customStuffPower_Armor_BluntKeys = new List<string>();
+            customStuffPower_Armor_BluntValues = new List<float>();
+            CustomStuffPower_Armor_Blunt = new Dictionary<string, float>();
+            StuffPower_Armor_Blunt.ResetStuffPower_Armor_BluntToVanillaRates();
+        }
+
+        if (valueLabel is "stuffpowerarmorheat" or "all")
+        {
+            customStuffPower_Armor_HeatKeys = new List<string>();
+            customStuffPower_Armor_HeatValues = new List<float>();
+            CustomStuffPower_Armor_Heat = new Dictionary<string, float>();
+            StuffPower_Armor_Heat.ResetStuffPower_Armor_HeatToVanillaRates();
+        }
+
+        if (valueLabel is "stuffpowerinsulationheat" or "all")
+        {
+            customStuffPower_Insulation_HeatKeys = new List<string>();
+            customStuffPower_Insulation_HeatValues = new List<float>();
+            CustomStuffPower_Insulation_Heat = new Dictionary<string, float>();
+            StuffPower_Insulation_Heat.ResetStuffPower_Insulation_HeatToVanillaRates();
+        }
+
+        if (valueLabel is "stuffpowerinsulationcold" or "all")
+        {
+            customStuffPower_Insulation_ColdKeys = new List<string>();
+            customStuffPower_Insulation_ColdValues = new List<float>();
+            CustomStuffPower_Insulation_Cold = new Dictionary<string, float>();
+            StuffPower_Insulation_Cold.ResetStuffPower_Insulation_ColdToVanillaRates();
         }
     }
 
@@ -152,7 +271,14 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "beautyoffset" when CustomBeautyOffsets?.Any() == true:
             case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
             case null or "flammability" when CustomFlammability?.Any() == true:
-            case null or "flammabilityFactor" when CustomFlammabilityFactor?.Any() == true:
+            case null or "flammabilityfactor" when CustomFlammabilityFactor?.Any() == true:
+            case null or "sharpdamagemultiplier" when CustomSharpDamageMultiplier?.Any() == true:
+            case null or "bluntdamagemultiplier" when CustomBluntDamageMultiplier?.Any() == true:
+            case null or "stuffpowerarmorsharp" when CustomStuffPower_Armor_Sharp?.Any() == true:
+            case null or "stuffpowerarmorblunt" when CustomStuffPower_Armor_Blunt?.Any() == true:
+            case null or "stuffpowerarmorheat" when CustomStuffPower_Armor_Heat?.Any() == true:
+            case null or "stuffpowerarmorheat" when CustomStuffPower_Insulation_Heat?.Any() == true:
+            case null or "stuffpowerarmorheat" when CustomStuffPower_Insulation_Cold?.Any() == true:
                 return true;
             default:
                 return false;

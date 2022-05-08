@@ -24,6 +24,20 @@
   <CSP.beautyoffset.tooltip>Added beauty-value when used as building material</CSP.beautyoffset.tooltip>
   <CSP.beautymultiplier>Beauty multiplier</CSP.beautymultiplier>
   <CSP.beautymultiplier.tooltip>Beauty multiplier when used as material in recipes</CSP.beautymultiplier.tooltip>
+  <CSP.sharpdamagemultiplier>Sharp damage multiplier</CSP.sharpdamagemultiplier>
+  <CSP.sharpdamagemultiplier.tooltip>Sharp damage multiplier when used as material in recipes</CSP.sharpdamagemultiplier.tooltip>
+  <CSP.bluntdamagemultiplier>Blunt damage multiplier</CSP.bluntdamagemultiplier>
+  <CSP.bluntdamagemultiplier.tooltip>Blunt damage multiplier when used as material in recipes</CSP.bluntdamagemultiplier.tooltip>
+  <CSP.stuffpowerarmorsharp>Sharp armor power</CSP.stuffpowerarmorsharp>
+  <CSP.stuffpowerarmorsharp.tooltip>Sharp armor power when used as material in recipes</CSP.stuffpowerarmorsharp.tooltip>
+  <CSP.stuffpowerarmorblunt>Blunt armor power</CSP.stuffpowerarmorblunt>
+  <CSP.stuffpowerarmorblunt.tooltip>Blunt armor power when used as material in recipes</CSP.stuffpowerarmorblunt.tooltip>
+  <CSP.stuffpowerarmorheat>Heat armor power</CSP.stuffpowerarmorheat>
+  <CSP.stuffpowerarmorheat.tooltip>Heat armor power when used as material in recipes</CSP.stuffpowerarmorheat.tooltip>
+  <CSP.stuffpowerinsulationheat>Heat insulation power</CSP.stuffpowerinsulationheat>
+  <CSP.stuffpowerinsulationheat.tooltip>Heat insulation power when used as material in recipes</CSP.stuffpowerinsulationheat.tooltip>
+  <CSP.stuffpowerinsulationcold>Cold insulation power</CSP.stuffpowerinsulationcold>
+  <CSP.stuffpowerinsulationcold.tooltip>Cold insulation power when used as material in recipes</CSP.stuffpowerinsulationcold.tooltip>
   <CSP.flammability>Flammability</CSP.flammability>
   <CSP.flammability.tooltip>Flammability when used as a building material</CSP.flammability.tooltip>
   <CSP.flammabilityfactor>Flammability multiplier</CSP.flammabilityfactor>

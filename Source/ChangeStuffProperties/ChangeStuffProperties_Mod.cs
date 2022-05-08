@@ -49,6 +49,13 @@ public class ChangeStuffProperties_Mod : Mod
         "MarketValue",
         "BeautyOffset",
         "BeautyMultiplier",
+        "SharpDamageMultiplier",
+        "BluntDamageMultiplier",
+        "StuffPowerArmorSharp",
+        "StuffPowerArmorBlunt",
+        "StuffPowerArmorHeat",
+        "StuffPowerInsulationHeat",
+        "StuffPowerInsulationCold",
         "Flammability",
         "FlammabilityFactor"
     };
@@ -285,6 +292,48 @@ public class ChangeStuffProperties_Mod : Mod
             {
                 FloatScrollView(ref frameRect, ref instance.Settings.CustomBeautyMultipliers,
                     BeautyMultiplier.VanillaBeautyMultipliers, "beautymultiplier");
+                break;
+            }
+            case "SharpDamageMultiplier":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomSharpDamageMultiplier,
+                    SharpDamageMultiplier.VanillaSharpDamageMultiplier, "sharpdamagemultiplier");
+                break;
+            }
+            case "BluntDamageMultiplier":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomBluntDamageMultiplier,
+                    BluntDamageMultiplier.VanillaBluntDamageMultiplier, "bluntdamagemultiplier");
+                break;
+            }
+            case "StuffPowerArmorSharp":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomStuffPower_Armor_Sharp,
+                    StuffPower_Armor_Sharp.VanillaStuffPower_Armor_Sharp, "stuffpowerarmorsharp");
+                break;
+            }
+            case "StuffPowerArmorBlunt":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomStuffPower_Armor_Blunt,
+                    StuffPower_Armor_Blunt.VanillaStuffPower_Armor_Blunt, "stuffpowerarmorblunt");
+                break;
+            }
+            case "StuffPowerArmorHeat":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomStuffPower_Armor_Heat,
+                    StuffPower_Armor_Heat.VanillaStuffPower_Armor_Heat, "stuffpowerarmorheat");
+                break;
+            }
+            case "StuffPowerInsulationHeat":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomStuffPower_Insulation_Heat,
+                    StuffPower_Insulation_Heat.VanillaStuffPower_Insulation_Heat, "stuffpowerinsulationheat");
+                break;
+            }
+            case "StuffPowerInsulationCold":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomStuffPower_Insulation_Heat,
+                    StuffPower_Insulation_Cold.VanillaStuffPower_Insulation_Cold, "stuffpowerinsulationcold");
                 break;
             }
             case "Flammability":
@@ -537,11 +586,193 @@ public class ChangeStuffProperties_Mod : Mod
                         (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty), 0,
-                            5f, false,
+                            6.5f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty)
                                 .ToStringPercent(),
                             thingLabel,
                             modInfo), 4);
+                    break;
+                case "sharpdamagemultiplier":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.SharpDamageMultiplier) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.SharpDamageMultiplier);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.SharpDamageMultiplier,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.SharpDamageMultiplier), 0,
+                            2.5f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.SharpDamageMultiplier)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "bluntdamagemultiplier":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.BluntDamageMultiplier) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.BluntDamageMultiplier);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.BluntDamageMultiplier,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.BluntDamageMultiplier), 0,
+                            2.5f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.BluntDamageMultiplier)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "stuffpowerarmorsharp":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Sharp) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Sharp);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Sharp,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Sharp), 0,
+                            4f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Sharp)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "stuffpowerarmorblunt":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Blunt) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Blunt);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Blunt,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Blunt), 0,
+                            2.5f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Blunt)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "stuffpowerarmorheat":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Heat) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Heat);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Heat,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Heat), 0,
+                            6f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Heat)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "stuffpowerinsulationheat":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Heat) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Heat);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Heat,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Heat), 0,
+                            100f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Heat)
+                                .ToStringTemperatureOffset(),
+                            thingLabel,
+                            modInfo), 4));
+                    break;
+                case "stuffpowerinsulationcold":
+                    if (thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Cold) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Cold);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Cold,
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Cold), 0,
+                            100f, false,
+                            thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Cold)
+                                .ToStringTemperatureOffset(),
+                            thingLabel,
+                            modInfo), 4));
                     break;
                 case "flammability":
                     if (thingDef.BaseFlammability !=
@@ -599,7 +830,7 @@ public class ChangeStuffProperties_Mod : Mod
                         (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability), 0,
-                            2.5f, false,
+                            3.5f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability)
                                 .ToStringPercent(),
                             thingLabel,
