@@ -20,6 +20,13 @@ You can currently modify the following properties on all stuff, vanilla and modd
 [*]Market value
 [*]Beauty offset
 [*]Beauty multiplier
+[*]Sharp damage multiplier
+[*]Blunt damage multiplier
+[*]Sharp armor power
+[*]Blunt armor power
+[*]Heat armor power
+[*]Heat insulation
+[*]Cold insulation
 [*]Flammability
 [*]Flammability multiplier
 [/list]
@@ -31,6 +38,10 @@ If you want to change with more precision, try the [url=https://steamcommunity.c
     [tr]
         [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
         [td][url=https://github.com/emipa606/ChangeStuffProperties][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
+        [td][img]https://i.imgur.com/h5VwTNL.png[/img][/td]
     [/tr]
 [/table]
 	
@@ -49,5 +60,6 @@ Since modding is just a hobby for me I expect no donations to keep modding. If y
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
+
 </description>
 </ModMetaData>

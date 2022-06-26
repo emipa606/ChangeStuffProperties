@@ -398,8 +398,8 @@ public class ChangeStuffProperties_Mod : Mod
         if (!string.IsNullOrEmpty(searchText))
         {
             allStuff = Main.AllStuff.Where(def =>
-                    def.label.ToLower().Contains(searchText.ToLower()) || def.modContentPack.Name.ToLower()
-                        .Contains(searchText.ToLower()) || def.defName.ToLower()
+                    def.label.ToLower().Contains(searchText.ToLower()) || def.modContentPack?.Name.ToLower()
+                        .Contains(searchText.ToLower()) == true || def.defName.ToLower()
                         .Contains(searchText.ToLower()))
                 .ToList();
         }

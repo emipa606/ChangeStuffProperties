@@ -13,6 +13,13 @@ You can currently modify the following properties on all stuff, vanilla and modd
 - Market value
 - Beauty offset
 - Beauty multiplier
+- Sharp damage multiplier
+- Blunt damage multiplier
+- Sharp armor power
+- Blunt armor power
+- Heat armor power
+- Heat insulation
+- Cold insulation
 - Flammability
 - Flammability multiplier
 
@@ -39,6 +46,7 @@ https://ko-fi.com/G2G55DDYD]![Image](https://i.imgur.com/Utx6OIH.png)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+
 
 
 
