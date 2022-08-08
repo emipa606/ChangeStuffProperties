@@ -42,4 +42,6 @@
   <CSP.flammability.tooltip>Flammability when used as a building material</CSP.flammability.tooltip>
   <CSP.flammabilityfactor>Flammability multiplier</CSP.flammabilityfactor>
   <CSP.flammabilityfactor.tooltip>Flammability multiplier when used as material in recipes</CSP.flammabilityfactor.tooltip>
+  <CSP.maxhitpointsfactor>Max hitpoints multiplier</CSP.maxhitpointsfactor>
+  <CSP.maxhitpointsfactor.tooltip>Max hitpoints multiplier when used as material in recipes</CSP.maxhitpointsfactor.tooltip>
 </LanguageData>

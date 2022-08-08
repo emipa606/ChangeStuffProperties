@@ -57,7 +57,8 @@ public class ChangeStuffProperties_Mod : Mod
         "StuffPowerInsulationHeat",
         "StuffPowerInsulationCold",
         "Flammability",
-        "FlammabilityFactor"
+        "FlammabilityFactor",
+        "MaxHitPointsFactor"
     };
 
     /// <summary>
@@ -346,6 +347,12 @@ public class ChangeStuffProperties_Mod : Mod
             {
                 FloatScrollView(ref frameRect, ref instance.Settings.CustomFlammabilityFactor,
                     FlammabilityFactor.VanillaFlammabilityFactor, "flammabilityfactor");
+                break;
+            }
+            case "MaxHitPointsFactor":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomMaxHitPointsFactor,
+                    MaxHitPointsFactor.VanillaMaxHitPointsFactor, "maxhitpointsfactor");
                 break;
             }
         }
@@ -832,6 +839,43 @@ public class ChangeStuffProperties_Mod : Mod
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability), 0,
                             3.5f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
+                case "maxhitpointsfactor":
+                    if (thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statFactors == null)
+                    {
+                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                    }
+
+                    if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.MaxHitPoints))
+                    {
+                        thingDef.stuffProps.statFactors.Add(new StatModifier
+                            { stat = StatDefOf.MaxHitPoints, value = 1f });
+                    }
+
+                    thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.MaxHitPoints).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints), 0,
+                            3.5f, false,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints)
                                 .ToStringPercent(),
                             thingLabel,
                             modInfo), 4);

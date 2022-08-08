@@ -82,12 +82,7 @@ public static class BeautyOffset
         {
             if (VanillaBeautyOffsets[thingDef.defName] == 0)
             {
-                if (thingDef.stuffProps.statOffsets == null)
-                {
-                    continue;
-                }
-
-                thingDef.stuffProps.statOffsets.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
+                thingDef.stuffProps.statOffsets?.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
                 continue;
             }
 

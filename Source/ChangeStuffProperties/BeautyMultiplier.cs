@@ -82,12 +82,7 @@ public static class BeautyMultiplier
         {
             if (VanillaBeautyMultipliers[thingDef.defName] == 1f)
             {
-                if (thingDef.stuffProps.statFactors == null)
-                {
-                    continue;
-                }
-
-                thingDef.stuffProps.statFactors.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
+                thingDef.stuffProps.statFactors?.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
                 continue;
             }
 

@@ -40,6 +40,10 @@ public class ChangeStuffProperties_Settings : ModSettings
     private List<string> customMassKeys;
 
     private List<float> customMassValues;
+
+    public Dictionary<string, float> CustomMaxHitPointsFactor;
+    private List<string> customMaxHitPointsFactorKeys;
+    private List<float> customMaxHitPointsFactorValues;
     public Dictionary<string, float> CustomSharpDamageMultiplier;
     private List<string> customSharpDamageMultiplierKeys;
 
@@ -98,6 +102,10 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customFlammabilityFactorKeys, ref customFlammabilityFactorValues);
+        Scribe_Collections.Look(ref CustomMaxHitPointsFactor, "CustomMaxHitPointsFactor",
+            LookMode.Value,
+            LookMode.Value,
+            ref customMaxHitPointsFactorKeys, ref customMaxHitPointsFactorValues);
         Scribe_Collections.Look(ref CustomSharpDamageMultiplier, "CustomSharpDamageMultiplier",
             LookMode.Value,
             LookMode.Value,
@@ -137,6 +145,7 @@ public class ChangeStuffProperties_Settings : ModSettings
         BeautyMultiplier.Initialize();
         Flammability.Initialize();
         FlammabilityFactor.Initialize();
+        MaxHitPointsFactor.Initialize();
         SharpDamageMultiplier.Initialize();
         BluntDamageMultiplier.Initialize();
         StuffPower_Armor_Sharp.Initialize();
@@ -201,6 +210,14 @@ public class ChangeStuffProperties_Settings : ModSettings
             customFlammabilityFactorKeys = new List<string>();
             customFlammabilityFactorValues = new List<float>();
             CustomFlammabilityFactor = new Dictionary<string, float>();
+            FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
+        }
+
+        if (valueLabel is "maxhitpoints" or "all")
+        {
+            customMaxHitPointsFactorKeys = new List<string>();
+            customMaxHitPointsFactorValues = new List<float>();
+            CustomMaxHitPointsFactor = new Dictionary<string, float>();
             FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
         }
 
@@ -272,6 +289,7 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
             case null or "flammability" when CustomFlammability?.Any() == true:
             case null or "flammabilityfactor" when CustomFlammabilityFactor?.Any() == true:
+            case null or "maxhitpointsfactor" when CustomMaxHitPointsFactor?.Any() == true:
             case null or "sharpdamagemultiplier" when CustomSharpDamageMultiplier?.Any() == true:
             case null or "bluntdamagemultiplier" when CustomBluntDamageMultiplier?.Any() == true:
             case null or "stuffpowerarmorsharp" when CustomStuffPower_Armor_Sharp?.Any() == true:
