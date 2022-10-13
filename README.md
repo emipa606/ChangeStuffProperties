@@ -22,6 +22,7 @@ You can currently modify the following properties on all stuff, vanilla and modd
 - Cold insulation
 - Flammability
 - Flammability multiplier
+- Max hitpoints multiplier
 
 
 
