@@ -40,13 +40,14 @@ public class ChangeStuffProperties_Mod : Mod
 
     private static readonly Color alternateBackground = new Color(0.1f, 0.1f, 0.1f, 0.5f);
 
-    private static readonly List<string> settingTabs = new List<string>
-    {
+    private static readonly List<string> settingTabs =
+    [
         "Settings",
         null,
         "Commonality",
         "Mass",
         "MarketValue",
+        "CleanlinessOffset",
         "BeautyOffset",
         "BeautyMultiplier",
         "SharpDamageMultiplier",
@@ -59,7 +60,7 @@ public class ChangeStuffProperties_Mod : Mod
         "Flammability",
         "FlammabilityFactor",
         "MaxHitPointsFactor"
-    };
+    ];
 
     /// <summary>
     ///     Constructor
@@ -77,7 +78,7 @@ public class ChangeStuffProperties_Mod : Mod
     /// <summary>
     ///     The instance-settings for the mod
     /// </summary>
-    internal ChangeStuffProperties_Settings Settings { get; set; }
+    internal ChangeStuffProperties_Settings Settings { get; }
 
     public string SelectedDef { get; set; }
 
@@ -261,6 +262,12 @@ public class ChangeStuffProperties_Mod : Mod
             {
                 FloatScrollView(ref frameRect, ref instance.Settings.CustomMarketValue,
                     MarketValue.VanillaMarketValues, "marketvalue");
+                break;
+            }
+            case "CleanlinessOffset":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomCleanlinessOffsets,
+                    CleanlinessOffset.VanillaCleanlinessOffsets, "cleanlinessoffset");
                 break;
             }
             case "BeautyOffset":
@@ -507,6 +514,43 @@ public class ChangeStuffProperties_Mod : Mod
                             thingLabel,
                             modInfo), 2));
                     break;
+                case "cleanlinessoffset":
+                    if (thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Cleanliness) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Cleanliness);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statOffsets == null)
+                    {
+                        thingDef.stuffProps.statOffsets = [];
+                    }
+
+                    if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Cleanliness))
+                    {
+                        thingDef.stuffProps.statOffsets.Add(
+                            new StatModifier { stat = StatDefOf.Cleanliness, value = 0 });
+                    }
+
+                    thingDef.stuffProps.statOffsets.First(modifier => modifier.stat == StatDefOf.Cleanliness).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                            sliderRect,
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Cleanliness), 0,
+                            5f, false,
+                            thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Cleanliness)
+                                .ToStringDecimalIfSmall(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
                 case "beautyoffset":
                     if (thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty) !=
                         vanillaValues[thingDef.defName])
@@ -525,7 +569,7 @@ public class ChangeStuffProperties_Mod : Mod
 
                     if (thingDef.stuffProps.statOffsets == null)
                     {
-                        thingDef.stuffProps.statOffsets = new List<StatModifier>();
+                        thingDef.stuffProps.statOffsets = [];
                     }
 
                     if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
@@ -561,7 +605,7 @@ public class ChangeStuffProperties_Mod : Mod
 
                     if (thingDef.stuffProps.statFactors == null)
                     {
-                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                        thingDef.stuffProps.statFactors = [];
                     }
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
@@ -804,7 +848,7 @@ public class ChangeStuffProperties_Mod : Mod
 
                     if (thingDef.stuffProps.statFactors == null)
                     {
-                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                        thingDef.stuffProps.statFactors = [];
                     }
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
@@ -841,7 +885,7 @@ public class ChangeStuffProperties_Mod : Mod
 
                     if (thingDef.stuffProps.statFactors == null)
                     {
-                        thingDef.stuffProps.statFactors = new List<StatModifier>();
+                        thingDef.stuffProps.statFactors = [];
                     }
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.MaxHitPoints))
@@ -897,7 +941,7 @@ public class ChangeStuffProperties_Mod : Mod
         {
             if (string.IsNullOrEmpty(settingTab))
             {
-                listing_Standard.ListItemSelectable(null, Color.yellow, out _);
+                listing_Standard.ListItemSelectable(null, Color.yellow);
                 continue;
             }
 
@@ -907,7 +951,7 @@ public class ChangeStuffProperties_Mod : Mod
             }
 
             if (listing_Standard.ListItemSelectable($"CSP.{settingTab.ToLower()}".Translate(), Color.yellow,
-                    out _, SelectedDef == settingTab))
+                    SelectedDef == settingTab))
             {
                 SelectedDef = SelectedDef == settingTab ? null : settingTab;
             }

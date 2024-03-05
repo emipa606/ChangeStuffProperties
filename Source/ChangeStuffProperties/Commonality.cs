@@ -35,13 +35,14 @@ public static class Commonality
         var counter = 0;
         foreach (var thingDef in Main.AllStuff)
         {
-            if (!ChangeStuffProperties_Mod.instance.Settings.CustomCommonality.ContainsKey(thingDef.defName))
+            if (!ChangeStuffProperties_Mod.instance.Settings.CustomCommonality.TryGetValue(thingDef.defName,
+                    out var value))
             {
                 continue;
             }
 
             thingDef.stuffProps.commonality =
-                ChangeStuffProperties_Mod.instance.Settings.CustomCommonality[thingDef.defName];
+                value;
             counter++;
         }
 

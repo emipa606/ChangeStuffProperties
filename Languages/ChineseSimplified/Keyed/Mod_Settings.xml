@@ -45,4 +45,6 @@
   <CSP.flammabilityfactor.tooltip>在配方中作为材料使用时的可燃性倍数</CSP.flammabilityfactor.tooltip>
   <CSP.maxhitpointsfactor>最大命中率乘数</CSP.maxhitpointsfactor>
   <CSP.maxhitpointsfactor.tooltip>在配方中作为材料使用时的最大命中率倍数</CSP.maxhitpointsfactor.tooltip>
+  <CSP.cleanlinessoffset>清洁度补偿</CSP.cleanlinessoffset>
+  <CSP.cleanlinessoffset.tooltip>在用作建筑材料时，增加了清洁价值</CSP.cleanlinessoffset.tooltip>
 </LanguageData>

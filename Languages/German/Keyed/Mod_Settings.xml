@@ -45,4 +45,6 @@
   <CSP.flammabilityfactor.tooltip>Multiplikator der Entflammbarkeit bei Verwendung als Material in Rezepten</CSP.flammabilityfactor.tooltip>
   <CSP.maxhitpointsfactor>Multiplikator für maximale Trefferpunkte</CSP.maxhitpointsfactor>
   <CSP.maxhitpointsfactor.tooltip>Maximaler Trefferpunkte-Multiplikator bei Verwendung als Material in Rezepten</CSP.maxhitpointsfactor.tooltip>
+  <CSP.cleanlinessoffset>Sauberkeitsoffset</CSP.cleanlinessoffset>
+  <CSP.cleanlinessoffset.tooltip>Zusätzlicher Sauberkeitswert bei Verwendung als Baumaterial</CSP.cleanlinessoffset.tooltip>
 </LanguageData>

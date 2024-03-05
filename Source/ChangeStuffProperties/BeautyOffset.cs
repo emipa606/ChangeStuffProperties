@@ -38,12 +38,13 @@ public static class BeautyOffset
         var counter = 0;
         foreach (var thingDef in Main.AllStuff)
         {
-            if (!ChangeStuffProperties_Mod.instance.Settings.CustomBeautyOffsets.ContainsKey(thingDef.defName))
+            if (!ChangeStuffProperties_Mod.instance.Settings.CustomBeautyOffsets.TryGetValue(thingDef.defName,
+                    out var offset))
             {
                 continue;
             }
 
-            if (ChangeStuffProperties_Mod.instance.Settings.CustomBeautyOffsets[thingDef.defName] == 0)
+            if (offset == 0)
             {
                 thingDef.stuffProps.statOffsets.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
                 continue;
@@ -51,7 +52,7 @@ public static class BeautyOffset
 
             if (thingDef.stuffProps.statOffsets == null)
             {
-                thingDef.stuffProps.statOffsets = new List<StatModifier>();
+                thingDef.stuffProps.statOffsets = [];
             }
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
@@ -88,7 +89,7 @@ public static class BeautyOffset
 
             if (thingDef.stuffProps.statOffsets == null)
             {
-                thingDef.stuffProps.statOffsets = new List<StatModifier>();
+                thingDef.stuffProps.statOffsets = [];
             }
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))

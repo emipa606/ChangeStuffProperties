@@ -38,12 +38,13 @@ public static class FlammabilityFactor
         var counter = 0;
         foreach (var thingDef in Main.AllStuff)
         {
-            if (!ChangeStuffProperties_Mod.instance.Settings.CustomFlammabilityFactor.ContainsKey(thingDef.defName))
+            if (!ChangeStuffProperties_Mod.instance.Settings.CustomFlammabilityFactor.TryGetValue(thingDef.defName,
+                    out var value))
             {
                 continue;
             }
 
-            if (ChangeStuffProperties_Mod.instance.Settings.CustomFlammabilityFactor[thingDef.defName] == 1f)
+            if (value == 1f)
             {
                 thingDef.stuffProps.statFactors.RemoveAll(modifier => modifier.stat == StatDefOf.Flammability);
                 continue;
@@ -51,7 +52,7 @@ public static class FlammabilityFactor
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
@@ -88,7 +89,7 @@ public static class FlammabilityFactor
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))

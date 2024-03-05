@@ -45,4 +45,6 @@
   <CSP.flammabilityfactor.tooltip>Multiplicateur d'inflammabilité lorsqu'il est utilisé comme matériau dans des recettes</CSP.flammabilityfactor.tooltip>
   <CSP.maxhitpointsfactor>Multiplicateur des points d'impact maximum</CSP.maxhitpointsfactor>
   <CSP.maxhitpointsfactor.tooltip>Multiplicateur des points de vie maximum lorsqu'ils sont utilisés comme matériau dans les recettes.</CSP.maxhitpointsfactor.tooltip>
+  <CSP.cleanlinessoffset>Compensation de la propreté</CSP.cleanlinessoffset>
+  <CSP.cleanlinessoffset.tooltip>Valeur ajoutée en termes de propreté lorsqu'il est utilisé comme matériau de construction</CSP.cleanlinessoffset.tooltip>
 </LanguageData>

@@ -38,12 +38,13 @@ public static class MaxHitPointsFactor
         var counter = 0;
         foreach (var thingDef in Main.AllStuff)
         {
-            if (!ChangeStuffProperties_Mod.instance.Settings.CustomMaxHitPointsFactor.ContainsKey(thingDef.defName))
+            if (!ChangeStuffProperties_Mod.instance.Settings.CustomMaxHitPointsFactor.TryGetValue(thingDef.defName,
+                    out var value))
             {
                 continue;
             }
 
-            if (ChangeStuffProperties_Mod.instance.Settings.CustomMaxHitPointsFactor[thingDef.defName] == 1f)
+            if (value == 1f)
             {
                 thingDef.stuffProps.statFactors.RemoveAll(modifier => modifier.stat == StatDefOf.MaxHitPoints);
                 continue;
@@ -51,7 +52,7 @@ public static class MaxHitPointsFactor
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.MaxHitPoints))
@@ -88,7 +89,7 @@ public static class MaxHitPointsFactor
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.MaxHitPoints))

@@ -18,6 +18,10 @@ public class ChangeStuffProperties_Settings : ModSettings
     private List<string> customBluntDamageMultiplierKeys;
 
     private List<float> customBluntDamageMultiplierValues;
+    private List<string> customCleanlinessOffsetKeys;
+    public Dictionary<string, float> CustomCleanlinessOffsets;
+
+    private List<float> customCleanlinessOffsetValues;
     public Dictionary<string, float> CustomCommonality;
 
     private List<string> customCommonalityKeys;
@@ -86,6 +90,10 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customMarketValueKeys, ref customMarketValueValues);
+        Scribe_Collections.Look(ref CustomCleanlinessOffsets, "CustomCleanlinessOffsets",
+            LookMode.Value,
+            LookMode.Value,
+            ref customCleanlinessOffsetKeys, ref customCleanlinessOffsetValues);
         Scribe_Collections.Look(ref CustomBeautyOffsets, "CustomBeautyOffsets",
             LookMode.Value,
             LookMode.Value,
@@ -141,6 +149,7 @@ public class ChangeStuffProperties_Settings : ModSettings
         Commonality.Initialize();
         Mass.Initialize();
         MarketValue.Initialize();
+        CleanlinessOffset.Initialize();
         BeautyOffset.Initialize();
         BeautyMultiplier.Initialize();
         Flammability.Initialize();
@@ -159,120 +168,128 @@ public class ChangeStuffProperties_Settings : ModSettings
     {
         if (valueLabel is "commonality" or "all")
         {
-            customCommonalityKeys = new List<string>();
-            customCommonalityValues = new List<float>();
+            customCommonalityKeys = [];
+            customCommonalityValues = [];
             CustomCommonality = new Dictionary<string, float>();
             Commonality.ResetCommonalityToVanillaRates();
         }
 
         if (valueLabel is "mass" or "all")
         {
-            customMassKeys = new List<string>();
-            customMassValues = new List<float>();
+            customMassKeys = [];
+            customMassValues = [];
             CustomMass = new Dictionary<string, float>();
             Mass.ResetMassToVanillaRates();
         }
 
         if (valueLabel is "marketvalue" or "all")
         {
-            customMarketValueKeys = new List<string>();
-            customMarketValueValues = new List<float>();
+            customMarketValueKeys = [];
+            customMarketValueValues = [];
             CustomMarketValue = new Dictionary<string, float>();
             MarketValue.ResetMarketValueToVanillaRates();
         }
 
+        if (valueLabel is "cleanlinessoffset" or "all")
+        {
+            customCleanlinessOffsetKeys = [];
+            customCleanlinessOffsetValues = [];
+            CustomCleanlinessOffsets = new Dictionary<string, float>();
+            CleanlinessOffset.ResetCleanlinessOffsetToVanillaRates();
+        }
+
         if (valueLabel is "beautyoffset" or "all")
         {
-            customBeautyOffsetKeys = new List<string>();
-            customBeautyOffsetValues = new List<float>();
+            customBeautyOffsetKeys = [];
+            customBeautyOffsetValues = [];
             CustomBeautyOffsets = new Dictionary<string, float>();
             BeautyOffset.ResetBeautyOffsetToVanillaRates();
         }
 
         if (valueLabel is "beautymultiplier" or "all")
         {
-            customBeautyMultiplierKeys = new List<string>();
-            customBeautyMultiplierValues = new List<float>();
+            customBeautyMultiplierKeys = [];
+            customBeautyMultiplierValues = [];
             CustomBeautyMultipliers = new Dictionary<string, float>();
             BeautyMultiplier.ResetBeautyMultiplierToVanillaRates();
         }
 
         if (valueLabel is "flammability" or "all")
         {
-            customFlammabilityKeys = new List<string>();
-            customFlammabilityValues = new List<float>();
+            customFlammabilityKeys = [];
+            customFlammabilityValues = [];
             CustomFlammability = new Dictionary<string, float>();
             Flammability.ResetFlammabilityToVanillaRates();
         }
 
         if (valueLabel is "flammabilityfactor" or "all")
         {
-            customFlammabilityFactorKeys = new List<string>();
-            customFlammabilityFactorValues = new List<float>();
+            customFlammabilityFactorKeys = [];
+            customFlammabilityFactorValues = [];
             CustomFlammabilityFactor = new Dictionary<string, float>();
             FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
         }
 
         if (valueLabel is "maxhitpoints" or "all")
         {
-            customMaxHitPointsFactorKeys = new List<string>();
-            customMaxHitPointsFactorValues = new List<float>();
+            customMaxHitPointsFactorKeys = [];
+            customMaxHitPointsFactorValues = [];
             CustomMaxHitPointsFactor = new Dictionary<string, float>();
             FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
         }
 
         if (valueLabel is "sharpdamagemultiplier" or "all")
         {
-            customSharpDamageMultiplierKeys = new List<string>();
-            customSharpDamageMultiplierValues = new List<float>();
+            customSharpDamageMultiplierKeys = [];
+            customSharpDamageMultiplierValues = [];
             CustomSharpDamageMultiplier = new Dictionary<string, float>();
             SharpDamageMultiplier.ResetSharpDamageMultiplierToVanillaRates();
         }
 
         if (valueLabel is "bluntdamagemultiplier" or "all")
         {
-            customBluntDamageMultiplierKeys = new List<string>();
-            customBluntDamageMultiplierValues = new List<float>();
+            customBluntDamageMultiplierKeys = [];
+            customBluntDamageMultiplierValues = [];
             CustomBluntDamageMultiplier = new Dictionary<string, float>();
             BluntDamageMultiplier.ResetBluntDamageMultiplierToVanillaRates();
         }
 
         if (valueLabel is "stuffpowerarmorsharp" or "all")
         {
-            customStuffPower_Armor_SharpKeys = new List<string>();
-            customStuffPower_Armor_SharpValues = new List<float>();
+            customStuffPower_Armor_SharpKeys = [];
+            customStuffPower_Armor_SharpValues = [];
             CustomStuffPower_Armor_Sharp = new Dictionary<string, float>();
             StuffPower_Armor_Sharp.ResetStuffPower_Armor_SharpToVanillaRates();
         }
 
         if (valueLabel is "stuffpowerarmorblunt" or "all")
         {
-            customStuffPower_Armor_BluntKeys = new List<string>();
-            customStuffPower_Armor_BluntValues = new List<float>();
+            customStuffPower_Armor_BluntKeys = [];
+            customStuffPower_Armor_BluntValues = [];
             CustomStuffPower_Armor_Blunt = new Dictionary<string, float>();
             StuffPower_Armor_Blunt.ResetStuffPower_Armor_BluntToVanillaRates();
         }
 
         if (valueLabel is "stuffpowerarmorheat" or "all")
         {
-            customStuffPower_Armor_HeatKeys = new List<string>();
-            customStuffPower_Armor_HeatValues = new List<float>();
+            customStuffPower_Armor_HeatKeys = [];
+            customStuffPower_Armor_HeatValues = [];
             CustomStuffPower_Armor_Heat = new Dictionary<string, float>();
             StuffPower_Armor_Heat.ResetStuffPower_Armor_HeatToVanillaRates();
         }
 
         if (valueLabel is "stuffpowerinsulationheat" or "all")
         {
-            customStuffPower_Insulation_HeatKeys = new List<string>();
-            customStuffPower_Insulation_HeatValues = new List<float>();
+            customStuffPower_Insulation_HeatKeys = [];
+            customStuffPower_Insulation_HeatValues = [];
             CustomStuffPower_Insulation_Heat = new Dictionary<string, float>();
             StuffPower_Insulation_Heat.ResetStuffPower_Insulation_HeatToVanillaRates();
         }
 
         if (valueLabel is "stuffpowerinsulationcold" or "all")
         {
-            customStuffPower_Insulation_ColdKeys = new List<string>();
-            customStuffPower_Insulation_ColdValues = new List<float>();
+            customStuffPower_Insulation_ColdKeys = [];
+            customStuffPower_Insulation_ColdValues = [];
             CustomStuffPower_Insulation_Cold = new Dictionary<string, float>();
             StuffPower_Insulation_Cold.ResetStuffPower_Insulation_ColdToVanillaRates();
         }
@@ -285,6 +302,7 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "commonality" when CustomCommonality?.Any() == true:
             case null or "mass" when CustomMass?.Any() == true:
             case null or "marketvalue" when CustomMarketValue?.Any() == true:
+            case null or "cleanlinessoffset" when CustomCleanlinessOffsets?.Any() == true:
             case null or "beautyoffset" when CustomBeautyOffsets?.Any() == true:
             case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
             case null or "flammability" when CustomFlammability?.Any() == true:

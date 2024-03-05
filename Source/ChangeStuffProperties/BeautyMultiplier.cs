@@ -38,12 +38,13 @@ public static class BeautyMultiplier
         var counter = 0;
         foreach (var thingDef in Main.AllStuff)
         {
-            if (!ChangeStuffProperties_Mod.instance.Settings.CustomBeautyMultipliers.ContainsKey(thingDef.defName))
+            if (!ChangeStuffProperties_Mod.instance.Settings.CustomBeautyMultipliers.TryGetValue(thingDef.defName,
+                    out var multiplier))
             {
                 continue;
             }
 
-            if (ChangeStuffProperties_Mod.instance.Settings.CustomBeautyMultipliers[thingDef.defName] == 1f)
+            if (multiplier == 1f)
             {
                 thingDef.stuffProps.statFactors.RemoveAll(modifier => modifier.stat == StatDefOf.Beauty);
                 continue;
@@ -51,7 +52,7 @@ public static class BeautyMultiplier
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
@@ -88,7 +89,7 @@ public static class BeautyMultiplier
 
             if (thingDef.stuffProps.statFactors == null)
             {
-                thingDef.stuffProps.statFactors = new List<StatModifier>();
+                thingDef.stuffProps.statFactors = [];
             }
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
