@@ -456,7 +456,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.commonality =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.commonality, 0.001f,
                             2.5f, false,
@@ -481,7 +481,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.Mass,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.BaseMass, 0.001f,
                             2.5f, false,
@@ -506,7 +506,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.MarketValue,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.BaseMarketValue, 0.1f,
                             20f, false,
@@ -542,7 +542,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.statOffsets.First(modifier => modifier.stat == StatDefOf.Cleanliness).value =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Cleanliness), 0,
                             5f, false,
@@ -578,7 +578,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.statOffsets.First(modifier => modifier.stat == StatDefOf.Beauty).value =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statOffsets.GetStatOffsetFromList(StatDefOf.Beauty), 0,
                             40f, false,
@@ -614,7 +614,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.Beauty).value =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty), 0,
                             6.5f, false,
@@ -640,7 +640,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.SharpDamageMultiplier,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.SharpDamageMultiplier), 0,
                             2.5f, false,
@@ -666,7 +666,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.BluntDamageMultiplier,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.BluntDamageMultiplier), 0,
                             2.5f, false,
@@ -692,7 +692,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Sharp,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Sharp), 0,
                             4f, false,
@@ -718,7 +718,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Blunt,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Blunt), 0,
                             2.5f, false,
@@ -744,7 +744,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Heat,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Armor_Heat), 0,
                             6f, false,
@@ -770,7 +770,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Heat,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Heat), 0,
                             100f, false,
@@ -796,7 +796,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Cold,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.GetStatValueAbstract(StatDefOf.StuffPower_Insulation_Cold), 0,
                             100f, false,
@@ -822,7 +822,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.Mass,
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.BaseFlammability, 0f,
                             2.5f, false,
@@ -858,7 +858,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.Flammability).value =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Flammability), 0,
                             3.5f, false,
@@ -895,7 +895,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
 
                     thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.MaxHitPoints).value =
-                        (float)Math.Round((decimal)Widgets.HorizontalSlider_NewTemp(
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints), 0,
                             3.5f, false,

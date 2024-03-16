@@ -11,6 +11,7 @@ You can currently modify the following properties on all stuff, vanilla and modd
 - Commonality
 - Mass
 - Market value
+- Cleanliness offset
 - Beauty offset
 - Beauty multiplier
 - Sharp damage multiplier
