@@ -230,12 +230,12 @@ public class ChangeStuffProperties_Settings : ModSettings
             FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
         }
 
-        if (valueLabel is "maxhitpoints" or "all")
+        if (valueLabel is "maxhitpointsfactor" or "all")
         {
             customMaxHitPointsFactorKeys = [];
             customMaxHitPointsFactorValues = [];
             CustomMaxHitPointsFactor = new Dictionary<string, float>();
-            FlammabilityFactor.ResetFlammabilityFactorToVanillaRates();
+            MaxHitPointsFactor.ResetMaxHitPointsFactorToVanillaRates();
         }
 
         if (valueLabel is "sharpdamagemultiplier" or "all")

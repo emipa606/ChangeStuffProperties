@@ -132,7 +132,6 @@ public class ChangeStuffProperties_Mod : Mod
 
     private void DrawIcon(ThingDef thing, Rect rect)
     {
-        Main.LogMessage($"Draw icon for {thing}");
         if (thing == null)
         {
             return;
@@ -821,7 +820,7 @@ public class ChangeStuffProperties_Mod : Mod
                         }
                     }
 
-                    thingDef.SetStatBaseValue(StatDefOf.Mass,
+                    thingDef.SetStatBaseValue(StatDefOf.Flammability,
                         (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.BaseFlammability, 0f,
@@ -898,7 +897,7 @@ public class ChangeStuffProperties_Mod : Mod
                         (float)Math.Round((decimal)Widgets.HorizontalSlider(
                             sliderRect,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints), 0,
-                            3.5f, false,
+                            10f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.MaxHitPoints)
                                 .ToStringPercent(),
                             thingLabel,
