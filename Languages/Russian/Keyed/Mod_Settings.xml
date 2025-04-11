@@ -47,4 +47,8 @@
   <CSP.maxhitpointsfactor.tooltip>Максимальный множитель хитпоинтов при использовании в качестве материала в рецептах</CSP.maxhitpointsfactor.tooltip>
   <CSP.cleanlinessoffset>Зачет по чистоте</CSP.cleanlinessoffset>
   <CSP.cleanlinessoffset.tooltip>Добавляет чистоты и ценности при использовании в качестве строительного материала</CSP.cleanlinessoffset.tooltip>
+  <CSP.worktobuildmultiplier>Мультипликатор WorkToBuild</CSP.worktobuildmultiplier>
+  <CSP.worktobuildmultiplier.tooltip>Множитель для количества работы при использовании в качестве материала в зданиях</CSP.worktobuildmultiplier.tooltip>
+  <CSP.worktomakemultiplier>Множитель WorkToMake</CSP.worktomakemultiplier>
+  <CSP.worktomakemultiplier.tooltip>Множитель для количества работы при использовании в качестве материала в рецептах</CSP.worktomakemultiplier.tooltip>
 </LanguageData>

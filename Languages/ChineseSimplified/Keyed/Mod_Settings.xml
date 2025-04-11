@@ -47,4 +47,8 @@
   <CSP.maxhitpointsfactor.tooltip>在配方中作为材料使用时的最大命中率倍数</CSP.maxhitpointsfactor.tooltip>
   <CSP.cleanlinessoffset>清洁度补偿</CSP.cleanlinessoffset>
   <CSP.cleanlinessoffset.tooltip>在用作建筑材料时，增加了清洁价值</CSP.cleanlinessoffset.tooltip>
+  <CSP.worktobuildmultiplier>建造工作乘数</CSP.worktobuildmultiplier>
+  <CSP.worktobuildmultiplier.tooltip>用作建筑物材料时的工程量乘数</CSP.worktobuildmultiplier.tooltip>
+  <CSP.worktomakemultiplier>WorkToMake 乘数</CSP.worktomakemultiplier>
+  <CSP.worktomakemultiplier.tooltip>在配方中用作材料时的工作量乘数</CSP.worktomakemultiplier.tooltip>
 </LanguageData>

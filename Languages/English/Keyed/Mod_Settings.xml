@@ -26,6 +26,10 @@
   <CSP.beautyoffset.tooltip>Added beauty-value when used as building material</CSP.beautyoffset.tooltip>
   <CSP.beautymultiplier>Beauty multiplier</CSP.beautymultiplier>
   <CSP.beautymultiplier.tooltip>Beauty multiplier when used as material in recipes</CSP.beautymultiplier.tooltip>
+  <CSP.worktobuildmultiplier>WorkToBuild multiplier</CSP.worktobuildmultiplier>
+  <CSP.worktobuildmultiplier.tooltip>Multiplier for the amount of work when used as material in buildings</CSP.worktobuildmultiplier.tooltip>
+  <CSP.worktomakemultiplier>WorkToMake multiplier</CSP.worktomakemultiplier>
+  <CSP.worktomakemultiplier.tooltip>Multiplier for the amount of work when used as material in recipes</CSP.worktomakemultiplier.tooltip>
   <CSP.sharpdamagemultiplier>Sharp damage multiplier</CSP.sharpdamagemultiplier>
   <CSP.sharpdamagemultiplier.tooltip>Sharp damage multiplier when used as material in recipes</CSP.sharpdamagemultiplier.tooltip>
   <CSP.bluntdamagemultiplier>Blunt damage multiplier</CSP.bluntdamagemultiplier>

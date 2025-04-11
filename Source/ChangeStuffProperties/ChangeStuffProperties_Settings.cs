@@ -6,22 +6,22 @@ namespace ChangeStuffProperties;
 
 public class ChangeStuffProperties_Settings : ModSettings
 {
-    private List<string> customBeautyMultiplierKeys;
     public Dictionary<string, float> CustomBeautyMultipliers;
+    private List<string> customBeautyMultipliersKeys;
 
-    private List<float> customBeautyMultiplierValues;
-    private List<string> customBeautyOffsetKeys;
+    private List<float> customBeautyMultipliersValues;
     public Dictionary<string, float> CustomBeautyOffsets;
+    private List<string> customBeautyOffsetsKeys;
 
-    private List<float> customBeautyOffsetValues;
+    private List<float> customBeautyOffsetsValues;
     public Dictionary<string, float> CustomBluntDamageMultiplier;
     private List<string> customBluntDamageMultiplierKeys;
 
     private List<float> customBluntDamageMultiplierValues;
-    private List<string> customCleanlinessOffsetKeys;
     public Dictionary<string, float> CustomCleanlinessOffsets;
+    private List<string> customCleanlinessOffsetsKeys;
 
-    private List<float> customCleanlinessOffsetValues;
+    private List<float> customCleanlinessOffsetsValues;
     public Dictionary<string, float> CustomCommonality;
 
     private List<string> customCommonalityKeys;
@@ -72,6 +72,15 @@ public class ChangeStuffProperties_Settings : ModSettings
     private List<string> customStuffPower_Insulation_HeatKeys;
 
     private List<float> customStuffPower_Insulation_HeatValues;
+
+    public Dictionary<string, float> CustomWorkToBuildMultipliers;
+    private List<string> customWorkToBuildMultipliersKeys;
+    private List<float> customWorkToBuildMultipliersValues;
+
+    public Dictionary<string, float> CustomWorkToMakeMultipliers;
+    private List<string> customWorkToMakeMultipliersKeys;
+    private List<float> customWorkToMakeMultipliersValues;
+
     public bool VerboseLogging;
 
     public override void ExposeData()
@@ -93,15 +102,23 @@ public class ChangeStuffProperties_Settings : ModSettings
         Scribe_Collections.Look(ref CustomCleanlinessOffsets, "CustomCleanlinessOffsets",
             LookMode.Value,
             LookMode.Value,
-            ref customCleanlinessOffsetKeys, ref customCleanlinessOffsetValues);
+            ref customCleanlinessOffsetsKeys, ref customCleanlinessOffsetsValues);
         Scribe_Collections.Look(ref CustomBeautyOffsets, "CustomBeautyOffsets",
             LookMode.Value,
             LookMode.Value,
-            ref customBeautyOffsetKeys, ref customBeautyOffsetValues);
-        Scribe_Collections.Look(ref CustomBeautyOffsets, "CustomBeautyMultiplier",
+            ref customBeautyOffsetsKeys, ref customBeautyOffsetsValues);
+        Scribe_Collections.Look(ref CustomBeautyMultipliers, "CustomBeautyMultipliers",
             LookMode.Value,
             LookMode.Value,
-            ref customBeautyMultiplierKeys, ref customBeautyMultiplierValues);
+            ref customBeautyMultipliersKeys, ref customBeautyMultipliersValues);
+        Scribe_Collections.Look(ref CustomWorkToBuildMultipliers, "CustomWorkToBuildMultipliers",
+            LookMode.Value,
+            LookMode.Value,
+            ref customWorkToBuildMultipliersKeys, ref customWorkToBuildMultipliersValues);
+        Scribe_Collections.Look(ref CustomWorkToMakeMultipliers, "CustomWorkToMakeMultipliers",
+            LookMode.Value,
+            LookMode.Value,
+            ref customWorkToMakeMultipliersKeys, ref customWorkToMakeMultipliersValues);
         Scribe_Collections.Look(ref CustomFlammability, "CustomFlammability",
             LookMode.Value,
             LookMode.Value,
@@ -126,7 +143,7 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customStuffPower_Armor_SharpKeys, ref customStuffPower_Armor_SharpValues);
-        Scribe_Collections.Look(ref CustomStuffPower_Armor_Sharp, "CustomStuffPower_Armor_Blunt",
+        Scribe_Collections.Look(ref CustomStuffPower_Armor_Blunt, "CustomStuffPower_Armor_Blunt",
             LookMode.Value,
             LookMode.Value,
             ref customStuffPower_Armor_BluntKeys, ref customStuffPower_Armor_BluntValues);
@@ -138,7 +155,7 @@ public class ChangeStuffProperties_Settings : ModSettings
             LookMode.Value,
             LookMode.Value,
             ref customStuffPower_Insulation_HeatKeys, ref customStuffPower_Insulation_HeatValues);
-        Scribe_Collections.Look(ref CustomStuffPower_Armor_Heat, "CustomStuffPower_Insulation_Cold",
+        Scribe_Collections.Look(ref CustomStuffPower_Insulation_Cold, "CustomStuffPower_Insulation_Cold",
             LookMode.Value,
             LookMode.Value,
             ref customStuffPower_Insulation_ColdKeys, ref customStuffPower_Insulation_ColdValues);
@@ -152,6 +169,8 @@ public class ChangeStuffProperties_Settings : ModSettings
         CleanlinessOffset.Initialize();
         BeautyOffset.Initialize();
         BeautyMultiplier.Initialize();
+        WorkToBuildMultiplier.Initialize();
+        WorkToMakeMultiplier.Initialize();
         Flammability.Initialize();
         FlammabilityFactor.Initialize();
         MaxHitPointsFactor.Initialize();
@@ -192,26 +211,42 @@ public class ChangeStuffProperties_Settings : ModSettings
 
         if (valueLabel is "cleanlinessoffset" or "all")
         {
-            customCleanlinessOffsetKeys = [];
-            customCleanlinessOffsetValues = [];
+            customCleanlinessOffsetsKeys = [];
+            customCleanlinessOffsetsValues = [];
             CustomCleanlinessOffsets = new Dictionary<string, float>();
             CleanlinessOffset.ResetCleanlinessOffsetToVanillaRates();
         }
 
         if (valueLabel is "beautyoffset" or "all")
         {
-            customBeautyOffsetKeys = [];
-            customBeautyOffsetValues = [];
+            customBeautyOffsetsKeys = [];
+            customBeautyOffsetsValues = [];
             CustomBeautyOffsets = new Dictionary<string, float>();
             BeautyOffset.ResetBeautyOffsetToVanillaRates();
         }
 
         if (valueLabel is "beautymultiplier" or "all")
         {
-            customBeautyMultiplierKeys = [];
-            customBeautyMultiplierValues = [];
+            customBeautyMultipliersKeys = [];
+            customBeautyMultipliersValues = [];
             CustomBeautyMultipliers = new Dictionary<string, float>();
             BeautyMultiplier.ResetBeautyMultiplierToVanillaRates();
+        }
+
+        if (valueLabel is "worktobuildmultiplier" or "all")
+        {
+            customWorkToBuildMultipliersKeys = [];
+            customWorkToBuildMultipliersValues = [];
+            CustomWorkToBuildMultipliers = new Dictionary<string, float>();
+            WorkToBuildMultiplier.ResetWorkToBuildMultiplierToVanillaRates();
+        }
+
+        if (valueLabel is "worktomakemultiplier" or "all")
+        {
+            customWorkToMakeMultipliersKeys = [];
+            customWorkToMakeMultipliersValues = [];
+            CustomWorkToMakeMultipliers = new Dictionary<string, float>();
+            WorkToMakeMultiplier.ResetWorkToMakeMultiplierToVanillaRates();
         }
 
         if (valueLabel is "flammability" or "all")
@@ -305,6 +340,8 @@ public class ChangeStuffProperties_Settings : ModSettings
             case null or "cleanlinessoffset" when CustomCleanlinessOffsets?.Any() == true:
             case null or "beautyoffset" when CustomBeautyOffsets?.Any() == true:
             case null or "beautymultiplier" when CustomBeautyMultipliers?.Any() == true:
+            case null or "worktobuildmultiplier" when CustomWorkToBuildMultipliers?.Any() == true:
+            case null or "worktomakemultiplier" when CustomWorkToMakeMultipliers?.Any() == true:
             case null or "flammability" when CustomFlammability?.Any() == true:
             case null or "flammabilityfactor" when CustomFlammabilityFactor?.Any() == true:
             case null or "maxhitpointsfactor" when CustomMaxHitPointsFactor?.Any() == true:

@@ -50,6 +50,8 @@ public class ChangeStuffProperties_Mod : Mod
         "CleanlinessOffset",
         "BeautyOffset",
         "BeautyMultiplier",
+        "WorkToBuildMultiplier",
+        "WorkToMakeMultiplier",
         "SharpDamageMultiplier",
         "BluntDamageMultiplier",
         "StuffPowerArmorSharp",
@@ -279,6 +281,18 @@ public class ChangeStuffProperties_Mod : Mod
             {
                 FloatScrollView(ref frameRect, ref instance.Settings.CustomBeautyMultipliers,
                     BeautyMultiplier.VanillaBeautyMultipliers, "beautymultiplier");
+                break;
+            }
+            case "WorkToBuildMultiplier":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomWorkToBuildMultipliers,
+                    WorkToBuildMultiplier.VanillaWorkToBuildMultipliers, "worktobuildmultiplier");
+                break;
+            }
+            case "WorkToMakeMultiplier":
+            {
+                FloatScrollView(ref frameRect, ref instance.Settings.CustomWorkToMakeMultipliers,
+                    WorkToMakeMultiplier.VanillaWorkToMakeMultipliers, "worktomakemultiplier");
                 break;
             }
             case "SharpDamageMultiplier":
@@ -618,6 +632,80 @@ public class ChangeStuffProperties_Mod : Mod
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty), 0,
                             6.5f, false,
                             thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.Beauty)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
+                case "worktobuildmultiplier":
+                    if (thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToBuild) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToBuild);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statFactors == null)
+                    {
+                        thingDef.stuffProps.statFactors = [];
+                    }
+
+                    if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToBuild))
+                    {
+                        thingDef.stuffProps.statFactors.Add(new StatModifier
+                            { stat = StatDefOf.WorkToBuild, value = 1f });
+                    }
+
+                    thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.WorkToBuild).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToBuild), 0,
+                            10f, false,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToBuild)
+                                .ToStringPercent(),
+                            thingLabel,
+                            modInfo), 4);
+                    break;
+                case "worktomakemultiplier":
+                    if (thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToMake) !=
+                        vanillaValues[thingDef.defName])
+                    {
+                        modifiedValues[thingDef.defName] =
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToMake);
+                        GUI.color = Color.green;
+                    }
+                    else
+                    {
+                        if (modifiedValues.ContainsKey(thingDef.defName))
+                        {
+                            modifiedValues.Remove(thingDef.defName);
+                        }
+                    }
+
+                    if (thingDef.stuffProps.statFactors == null)
+                    {
+                        thingDef.stuffProps.statFactors = [];
+                    }
+
+                    if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToMake))
+                    {
+                        thingDef.stuffProps.statFactors.Add(
+                            new StatModifier { stat = StatDefOf.WorkToMake, value = 1f });
+                    }
+
+                    thingDef.stuffProps.statFactors.First(modifier => modifier.stat == StatDefOf.WorkToMake).value =
+                        (float)Math.Round((decimal)Widgets.HorizontalSlider(
+                            sliderRect,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToMake), 0,
+                            6.5f, false,
+                            thingDef.stuffProps.statFactors.GetStatFactorFromList(StatDefOf.WorkToMake)
                                 .ToStringPercent(),
                             thingLabel,
                             modInfo), 4);

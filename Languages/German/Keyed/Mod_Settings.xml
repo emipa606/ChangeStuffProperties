@@ -47,4 +47,8 @@
   <CSP.maxhitpointsfactor.tooltip>Maximaler Trefferpunkte-Multiplikator bei Verwendung als Material in Rezepten</CSP.maxhitpointsfactor.tooltip>
   <CSP.cleanlinessoffset>Sauberkeitsoffset</CSP.cleanlinessoffset>
   <CSP.cleanlinessoffset.tooltip>Zusätzlicher Sauberkeitswert bei Verwendung als Baumaterial</CSP.cleanlinessoffset.tooltip>
+  <CSP.worktobuildmultiplier>WorkToBuild-Multiplikator</CSP.worktobuildmultiplier>
+  <CSP.worktobuildmultiplier.tooltip>Multiplikator für den Arbeitsaufwand bei der Verwendung als Material in Gebäuden</CSP.worktobuildmultiplier.tooltip>
+  <CSP.worktomakemultiplier>WorkToMake-Multiplikator</CSP.worktomakemultiplier>
+  <CSP.worktomakemultiplier.tooltip>Multiplikator für den Arbeitsaufwand bei Verwendung als Material in Rezepten</CSP.worktomakemultiplier.tooltip>
 </LanguageData>

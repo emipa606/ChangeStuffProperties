@@ -47,4 +47,8 @@
   <CSP.maxhitpointsfactor.tooltip>Multiplicateur des points de vie maximum lorsqu'ils sont utilisés comme matériau dans les recettes.</CSP.maxhitpointsfactor.tooltip>
   <CSP.cleanlinessoffset>Compensation de la propreté</CSP.cleanlinessoffset>
   <CSP.cleanlinessoffset.tooltip>Valeur ajoutée en termes de propreté lorsqu'il est utilisé comme matériau de construction</CSP.cleanlinessoffset.tooltip>
+  <CSP.worktobuildmultiplier>Multiplicateur WorkToBuild</CSP.worktobuildmultiplier>
+  <CSP.worktobuildmultiplier.tooltip>Multiplicateur de la quantité de travail lorsqu'il est utilisé comme matériau dans les bâtiments</CSP.worktobuildmultiplier.tooltip>
+  <CSP.worktomakemultiplier>Multiplicateur WorkToMake</CSP.worktomakemultiplier>
+  <CSP.worktomakemultiplier.tooltip>Multiplicateur de la quantité de travail lorsqu'il est utilisé comme matériau dans les recettes</CSP.worktomakemultiplier.tooltip>
 </LanguageData>
