@@ -7,7 +7,7 @@ namespace ChangeStuffProperties;
 
 public static class CleanlinessOffset
 {
-    public static readonly Dictionary<string, float> VanillaCleanlinessOffsets = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaCleanlinessOffsets = new();
 
     static CleanlinessOffset()
     {
@@ -50,10 +50,7 @@ public static class CleanlinessOffset
                 continue;
             }
 
-            if (thingDef.stuffProps.statOffsets == null)
-            {
-                thingDef.stuffProps.statOffsets = [];
-            }
+            thingDef.stuffProps.statOffsets ??= [];
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Cleanliness))
             {
@@ -87,10 +84,7 @@ public static class CleanlinessOffset
                 continue;
             }
 
-            if (thingDef.stuffProps.statOffsets == null)
-            {
-                thingDef.stuffProps.statOffsets = [];
-            }
+            thingDef.stuffProps.statOffsets ??= [];
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Cleanliness))
             {

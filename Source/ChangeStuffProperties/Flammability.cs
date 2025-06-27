@@ -6,7 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class Flammability
 {
-    public static readonly Dictionary<string, float> VanillaFlammability = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaFlammability = new();
 
     static Flammability()
     {

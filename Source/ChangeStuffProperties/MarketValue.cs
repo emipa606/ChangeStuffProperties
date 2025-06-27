@@ -6,7 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class MarketValue
 {
-    public static readonly Dictionary<string, float> VanillaMarketValues = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaMarketValues = new();
 
     static MarketValue()
     {

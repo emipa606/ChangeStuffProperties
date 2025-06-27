@@ -6,8 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class StuffPower_Insulation_Heat
 {
-    public static readonly Dictionary<string, float>
-        VanillaStuffPower_Insulation_Heat = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaStuffPower_Insulation_Heat = new();
 
     static StuffPower_Insulation_Heat()
     {

@@ -13,6 +13,8 @@ You can currently modify the following properties on all stuff, vanilla and modd
 - Cleanliness offset
 - Beauty offset
 - Beauty multiplier
+- WorkToMake multiplier
+- WorkToBuild multiplier
 - Sharp damage multiplier
 - Blunt damage multiplier
 - Sharp armor power

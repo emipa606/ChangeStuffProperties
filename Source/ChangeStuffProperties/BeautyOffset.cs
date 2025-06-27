@@ -7,7 +7,7 @@ namespace ChangeStuffProperties;
 
 public static class BeautyOffset
 {
-    public static readonly Dictionary<string, float> VanillaBeautyOffsets = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaBeautyOffsets = new();
 
     static BeautyOffset()
     {
@@ -50,10 +50,7 @@ public static class BeautyOffset
                 continue;
             }
 
-            if (thingDef.stuffProps.statOffsets == null)
-            {
-                thingDef.stuffProps.statOffsets = [];
-            }
+            thingDef.stuffProps.statOffsets ??= [];
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
             {
@@ -87,10 +84,7 @@ public static class BeautyOffset
                 continue;
             }
 
-            if (thingDef.stuffProps.statOffsets == null)
-            {
-                thingDef.stuffProps.statOffsets = [];
-            }
+            thingDef.stuffProps.statOffsets ??= [];
 
             if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
             {

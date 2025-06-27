@@ -7,7 +7,7 @@ namespace ChangeStuffProperties;
 
 public static class FlammabilityFactor
 {
-    public static readonly Dictionary<string, float> VanillaFlammabilityFactor = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaFlammabilityFactor = new();
 
     static FlammabilityFactor()
     {
@@ -50,10 +50,7 @@ public static class FlammabilityFactor
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
             {
@@ -87,10 +84,7 @@ public static class FlammabilityFactor
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
             {

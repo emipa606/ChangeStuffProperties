@@ -29,7 +29,6 @@ public static class Main
 
             return allStuff;
         }
-        set => allStuff = value;
     }
 
 

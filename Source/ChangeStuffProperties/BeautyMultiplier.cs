@@ -7,7 +7,7 @@ namespace ChangeStuffProperties;
 
 public static class BeautyMultiplier
 {
-    public static readonly Dictionary<string, float> VanillaBeautyMultipliers = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaBeautyMultipliers = new();
 
     static BeautyMultiplier()
     {
@@ -50,10 +50,7 @@ public static class BeautyMultiplier
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
             {
@@ -87,10 +84,7 @@ public static class BeautyMultiplier
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
             {

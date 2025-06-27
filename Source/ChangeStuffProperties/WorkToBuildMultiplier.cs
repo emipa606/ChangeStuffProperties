@@ -7,7 +7,7 @@ namespace ChangeStuffProperties;
 
 public static class WorkToBuildMultiplier
 {
-    public static readonly Dictionary<string, float> VanillaWorkToBuildMultipliers = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaWorkToBuildMultipliers = new();
 
     static WorkToBuildMultiplier()
     {
@@ -50,10 +50,7 @@ public static class WorkToBuildMultiplier
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToBuild))
             {
@@ -87,10 +84,7 @@ public static class WorkToBuildMultiplier
                 continue;
             }
 
-            if (thingDef.stuffProps.statFactors == null)
-            {
-                thingDef.stuffProps.statFactors = [];
-            }
+            thingDef.stuffProps.statFactors ??= [];
 
             if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToBuild))
             {

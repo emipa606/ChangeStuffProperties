@@ -5,7 +5,7 @@ namespace ChangeStuffProperties;
 
 public static class Commonality
 {
-    public static readonly Dictionary<string, float> VanillaCommonalities = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaCommonalities = new();
 
     static Commonality()
     {

@@ -16,11 +16,11 @@ public class ChangeStuffProperties_Mod : Mod
     /// </summary>
     public static ChangeStuffProperties_Mod instance;
 
-    public static readonly Vector2 buttonSize = new Vector2(100f, 25f);
+    private static readonly Vector2 buttonSize = new(100f, 25f);
 
-    private static readonly Vector2 searchSize = new Vector2(175f, 25f);
+    private static readonly Vector2 searchSize = new(175f, 25f);
 
-    private static readonly Vector2 iconSize = new Vector2(48f, 48f);
+    private static readonly Vector2 iconSize = new(48f, 48f);
 
     private static readonly int buttonSpacer = 200;
 
@@ -38,7 +38,7 @@ public class ChangeStuffProperties_Mod : Mod
 
     private static string searchText = "";
 
-    private static readonly Color alternateBackground = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+    private static readonly Color alternateBackground = new(0.1f, 0.1f, 0.1f, 0.5f);
 
     private static readonly List<string> settingTabs =
     [
@@ -82,7 +82,7 @@ public class ChangeStuffProperties_Mod : Mod
     /// </summary>
     internal ChangeStuffProperties_Settings Settings { get; }
 
-    public string SelectedDef { get; set; }
+    private string SelectedDef { get; set; }
 
     public override void WriteSettings()
     {
@@ -104,8 +104,8 @@ public class ChangeStuffProperties_Mod : Mod
 
         listing_Standard = new Listing_Standard();
 
-        DrawOptions(rect2);
-        DrawTabsList(rect2);
+        drawOptions(rect2);
+        drawTabsList(rect2);
         Settings.Write();
     }
 
@@ -119,7 +119,7 @@ public class ChangeStuffProperties_Mod : Mod
     }
 
 
-    private static void DrawButton(Action action, string text, Vector2 pos)
+    private static void drawButton(Action action, string text, Vector2 pos)
     {
         var rect = new Rect(pos.x, pos.y, buttonSize.x, buttonSize.y);
         if (!Widgets.ButtonText(rect, text, true, false, Color.white))
@@ -132,7 +132,7 @@ public class ChangeStuffProperties_Mod : Mod
     }
 
 
-    private void DrawIcon(ThingDef thing, Rect rect)
+    private static void drawIcon(ThingDef thing, Rect rect)
     {
         if (thing == null)
         {
@@ -194,7 +194,7 @@ public class ChangeStuffProperties_Mod : Mod
         TooltipHandler.TipRegion(rect, toolTip);
     }
 
-    private void DrawOptions(Rect rect)
+    private void drawOptions(Rect rect)
     {
         var optionsOuterContainer = rect.ContractedBy(10);
         optionsOuterContainer.x += leftSideWidth + columnSpacer;
@@ -225,7 +225,7 @@ public class ChangeStuffProperties_Mod : Mod
                 {
                     var labelPoint = listing_Standard.Label("CSP.resetall.label".Translate(), -1F,
                         "CSP.resetall.tooltip".Translate());
-                    DrawButton(() =>
+                    drawButton(() =>
                         {
                             Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                                 "CSP.resetall.confirm".Translate(),
@@ -359,7 +359,7 @@ public class ChangeStuffProperties_Mod : Mod
     }
 
 
-    private void FloatScrollView(ref Rect frameRect, ref Dictionary<string, float> modifiedValues,
+    private static void FloatScrollView(ref Rect frameRect, ref Dictionary<string, float> modifiedValues,
         Dictionary<string, float> vanillaValues, string header)
     {
         listing_Standard.Begin(frameRect);
@@ -371,14 +371,11 @@ public class ChangeStuffProperties_Mod : Mod
             headerLabel.position,
             searchSize), $"CSP.{header}.tooltip".Translate());
 
-        if (modifiedValues == null)
-        {
-            modifiedValues = new Dictionary<string, float>();
-        }
+        modifiedValues ??= new Dictionary<string, float>();
 
         if (modifiedValues.Any())
         {
-            DrawButton(() =>
+            drawButton(() =>
                 {
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                         "CSP.resetone.confirm".Translate($"CSP.{header}".Translate().ToLower()),
@@ -437,17 +434,17 @@ public class ChangeStuffProperties_Mod : Mod
             var sliderRect = rowRect;
             sliderRect.x += iconSize.x;
             sliderRect.width -= iconSize.x;
-            DrawIcon(thingDef, new Rect(rowRect.position, iconSize));
+            drawIcon(thingDef, new Rect(rowRect.position, iconSize));
 
             var thingLabel = $"{thingDef.label.CapitalizeFirst()} ({thingDef.defName})";
             if (thingLabel.Length > 45)
             {
-                thingLabel = $"{thingLabel.Substring(0, 42)}...";
+                thingLabel = $"{thingLabel[..42]}...";
             }
 
             if (modInfo is { Length: > 45 })
             {
-                modInfo = $"{modInfo.Substring(0, 42)}...";
+                modInfo = $"{modInfo[..42]}...";
             }
 
             switch (header)
@@ -462,10 +459,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.stuffProps.commonality =
@@ -487,10 +481,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.Mass,
@@ -512,10 +503,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.MarketValue,
@@ -537,16 +525,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statOffsets == null)
-                    {
-                        thingDef.stuffProps.statOffsets = [];
-                    }
+                    thingDef.stuffProps.statOffsets ??= [];
 
                     if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Cleanliness))
                     {
@@ -574,16 +556,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statOffsets == null)
-                    {
-                        thingDef.stuffProps.statOffsets = [];
-                    }
+                    thingDef.stuffProps.statOffsets ??= [];
 
                     if (thingDef.stuffProps.statOffsets.All(modifier => modifier.stat != StatDefOf.Beauty))
                     {
@@ -610,16 +586,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statFactors == null)
-                    {
-                        thingDef.stuffProps.statFactors = [];
-                    }
+                    thingDef.stuffProps.statFactors ??= [];
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Beauty))
                     {
@@ -646,16 +616,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statFactors == null)
-                    {
-                        thingDef.stuffProps.statFactors = [];
-                    }
+                    thingDef.stuffProps.statFactors ??= [];
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToBuild))
                     {
@@ -683,16 +647,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statFactors == null)
-                    {
-                        thingDef.stuffProps.statFactors = [];
-                    }
+                    thingDef.stuffProps.statFactors ??= [];
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.WorkToMake))
                     {
@@ -720,10 +678,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.SharpDamageMultiplier,
@@ -746,10 +701,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.BluntDamageMultiplier,
@@ -772,10 +724,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Sharp,
@@ -798,10 +747,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Blunt,
@@ -824,10 +770,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Armor_Heat,
@@ -850,10 +793,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Heat,
@@ -876,10 +816,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.StuffPower_Insulation_Cold,
@@ -902,10 +839,7 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
                     thingDef.SetStatBaseValue(StatDefOf.Flammability,
@@ -927,16 +861,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statFactors == null)
-                    {
-                        thingDef.stuffProps.statFactors = [];
-                    }
+                    thingDef.stuffProps.statFactors ??= [];
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.Flammability))
                     {
@@ -964,16 +892,10 @@ public class ChangeStuffProperties_Mod : Mod
                     }
                     else
                     {
-                        if (modifiedValues.ContainsKey(thingDef.defName))
-                        {
-                            modifiedValues.Remove(thingDef.defName);
-                        }
+                        modifiedValues.Remove(thingDef.defName);
                     }
 
-                    if (thingDef.stuffProps.statFactors == null)
-                    {
-                        thingDef.stuffProps.statFactors = [];
-                    }
+                    thingDef.stuffProps.statFactors ??= [];
 
                     if (thingDef.stuffProps.statFactors.All(modifier => modifier.stat != StatDefOf.MaxHitPoints))
                     {
@@ -1002,7 +924,7 @@ public class ChangeStuffProperties_Mod : Mod
     }
 
 
-    private void DrawTabsList(Rect rect)
+    private void drawTabsList(Rect rect)
     {
         var scrollContainer = rect.ContractedBy(10);
         scrollContainer.width = leftSideWidth;
@@ -1017,7 +939,7 @@ public class ChangeStuffProperties_Mod : Mod
         tabContentRect.y = 0;
         tabContentRect.width -= 20;
 
-        var listAddition = 24;
+        const int listAddition = 24;
 
 
         tabContentRect.height = (settingTabs.Count * 25f) + listAddition;

@@ -6,7 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class BluntDamageMultiplier
 {
-    public static readonly Dictionary<string, float> VanillaBluntDamageMultiplier = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaBluntDamageMultiplier = new();
 
     static BluntDamageMultiplier()
     {

@@ -6,7 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class Mass
 {
-    public static readonly Dictionary<string, float> VanillaMasses = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaMasses = new();
 
     static Mass()
     {

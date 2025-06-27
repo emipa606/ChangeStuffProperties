@@ -6,7 +6,7 @@ namespace ChangeStuffProperties;
 
 public static class SharpDamageMultiplier
 {
-    public static readonly Dictionary<string, float> VanillaSharpDamageMultiplier = new Dictionary<string, float>();
+    public static readonly Dictionary<string, float> VanillaSharpDamageMultiplier = new();
 
     static SharpDamageMultiplier()
     {
