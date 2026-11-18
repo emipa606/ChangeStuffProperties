@@ -94,12 +94,12 @@ public class ChangeStuffProperties_Mod : Mod
     /// <summary>
     ///     The settings-window
     /// </summary>
-    /// <param name="rect"></param>
-    public override void DoSettingsWindowContents(Rect rect)
+    /// <param name="inRect"></param>
+    public override void DoSettingsWindowContents(Rect inRect)
     {
-        base.DoSettingsWindowContents(rect);
+        base.DoSettingsWindowContents(inRect);
 
-        var rect2 = rect.ContractedBy(1);
+        var rect2 = inRect.ContractedBy(1);
         leftSideWidth = rect2.ContractedBy(10).width / 4;
 
         listing_Standard = new Listing_Standard();
@@ -945,7 +945,6 @@ public class ChangeStuffProperties_Mod : Mod
         tabContentRect.height = (settingTabs.Count * 25f) + listAddition;
         Widgets.BeginScrollView(tabFrameRect, ref tabsScrollPosition, tabContentRect);
         listing_Standard.Begin(tabContentRect);
-        //Text.Font = GameFont.Tiny;
         foreach (var settingTab in settingTabs)
         {
             if (string.IsNullOrEmpty(settingTab))
@@ -969,7 +968,6 @@ public class ChangeStuffProperties_Mod : Mod
         }
 
         listing_Standard.End();
-        //Text.Font = GameFont.Small;
         Widgets.EndScrollView();
     }
 }

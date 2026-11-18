@@ -8,26 +8,24 @@ namespace ChangeStuffProperties;
 [StaticConstructorOnStartup]
 public static class Main
 {
-    private static List<ThingDef> allStuff;
-
     static Main()
     {
-        ChangeStuffProperties_Mod.instance.Settings.Initialize();
+        ChangeStuffProperties_Settings.Initialize();
     }
 
     public static List<ThingDef> AllStuff
     {
         get
         {
-            if (allStuff == null || allStuff.Count == 0)
+            if (field == null || field.Count == 0)
             {
-                allStuff = (from stuff in DefDatabase<ThingDef>.AllDefsListForReading
+                field = (from stuff in DefDatabase<ThingDef>.AllDefsListForReading
                     where stuff.IsStuff
                     orderby stuff.label
                     select stuff).ToList();
             }
 
-            return allStuff;
+            return field;
         }
     }
 

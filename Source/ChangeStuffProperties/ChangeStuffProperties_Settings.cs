@@ -7,81 +7,81 @@ namespace ChangeStuffProperties;
 public class ChangeStuffProperties_Settings : ModSettings
 {
     public Dictionary<string, float> CustomBeautyMultipliers;
+    public Dictionary<string, float> CustomBeautyOffsets;
+    public Dictionary<string, float> CustomBluntDamageMultiplier;
+    public Dictionary<string, float> CustomCleanlinessOffsets;
+    public Dictionary<string, float> CustomCommonality;
+    public Dictionary<string, float> CustomFlammability;
+    public Dictionary<string, float> CustomFlammabilityFactor;
+    public Dictionary<string, float> CustomMarketValue;
+    public Dictionary<string, float> CustomMass;
+
+    public Dictionary<string, float> CustomMaxHitPointsFactor;
+    public Dictionary<string, float> CustomSharpDamageMultiplier;
+    public Dictionary<string, float> CustomStuffPower_Armor_Blunt;
+    public Dictionary<string, float> CustomStuffPower_Armor_Heat;
+    public Dictionary<string, float> CustomStuffPower_Armor_Sharp;
+    public Dictionary<string, float> CustomStuffPower_Insulation_Cold;
+    public Dictionary<string, float> CustomStuffPower_Insulation_Heat;
+
+    public Dictionary<string, float> CustomWorkToBuildMultipliers;
+
+    public Dictionary<string, float> CustomWorkToMakeMultipliers;
+
+    public bool VerboseLogging;
     private List<string> customBeautyMultipliersKeys;
 
     private List<float> customBeautyMultipliersValues;
-    public Dictionary<string, float> CustomBeautyOffsets;
     private List<string> customBeautyOffsetsKeys;
 
     private List<float> customBeautyOffsetsValues;
-    public Dictionary<string, float> CustomBluntDamageMultiplier;
     private List<string> customBluntDamageMultiplierKeys;
 
     private List<float> customBluntDamageMultiplierValues;
-    public Dictionary<string, float> CustomCleanlinessOffsets;
     private List<string> customCleanlinessOffsetsKeys;
 
     private List<float> customCleanlinessOffsetsValues;
-    public Dictionary<string, float> CustomCommonality;
 
     private List<string> customCommonalityKeys;
 
     private List<float> customCommonalityValues;
-    public Dictionary<string, float> CustomFlammability;
-    public Dictionary<string, float> CustomFlammabilityFactor;
     private List<string> customFlammabilityFactorKeys;
 
     private List<float> customFlammabilityFactorValues;
     private List<string> customFlammabilityKeys;
 
     private List<float> customFlammabilityValues;
-    public Dictionary<string, float> CustomMarketValue;
 
     private List<string> customMarketValueKeys;
 
     private List<float> customMarketValueValues;
-    public Dictionary<string, float> CustomMass;
     private List<string> customMassKeys;
 
     private List<float> customMassValues;
-
-    public Dictionary<string, float> CustomMaxHitPointsFactor;
     private List<string> customMaxHitPointsFactorKeys;
     private List<float> customMaxHitPointsFactorValues;
-    public Dictionary<string, float> CustomSharpDamageMultiplier;
     private List<string> customSharpDamageMultiplierKeys;
 
     private List<float> customSharpDamageMultiplierValues;
-    public Dictionary<string, float> CustomStuffPower_Armor_Blunt;
     private List<string> customStuffPower_Armor_BluntKeys;
 
     private List<float> customStuffPower_Armor_BluntValues;
-    public Dictionary<string, float> CustomStuffPower_Armor_Heat;
     private List<string> customStuffPower_Armor_HeatKeys;
 
     private List<float> customStuffPower_Armor_HeatValues;
-    public Dictionary<string, float> CustomStuffPower_Armor_Sharp;
     private List<string> customStuffPower_Armor_SharpKeys;
 
     private List<float> customStuffPower_Armor_SharpValues;
-    public Dictionary<string, float> CustomStuffPower_Insulation_Cold;
     private List<string> customStuffPower_Insulation_ColdKeys;
 
     private List<float> customStuffPower_Insulation_ColdValues;
-    public Dictionary<string, float> CustomStuffPower_Insulation_Heat;
     private List<string> customStuffPower_Insulation_HeatKeys;
 
     private List<float> customStuffPower_Insulation_HeatValues;
-
-    public Dictionary<string, float> CustomWorkToBuildMultipliers;
     private List<string> customWorkToBuildMultipliersKeys;
     private List<float> customWorkToBuildMultipliersValues;
-
-    public Dictionary<string, float> CustomWorkToMakeMultipliers;
     private List<string> customWorkToMakeMultipliersKeys;
     private List<float> customWorkToMakeMultipliersValues;
-
-    public bool VerboseLogging;
 
     public override void ExposeData()
     {
@@ -161,7 +161,7 @@ public class ChangeStuffProperties_Settings : ModSettings
             ref customStuffPower_Insulation_ColdKeys, ref customStuffPower_Insulation_ColdValues);
     }
 
-    public void Initialize()
+    public static void Initialize()
     {
         Commonality.Initialize();
         Mass.Initialize();
@@ -321,13 +321,15 @@ public class ChangeStuffProperties_Settings : ModSettings
             StuffPower_Insulation_Heat.ResetStuffPower_Insulation_HeatToVanillaRates();
         }
 
-        if (valueLabel is "stuffpowerinsulationcold" or "all")
+        if (valueLabel is not ("stuffpowerinsulationcold" or "all"))
         {
-            customStuffPower_Insulation_ColdKeys = [];
-            customStuffPower_Insulation_ColdValues = [];
-            CustomStuffPower_Insulation_Cold = new Dictionary<string, float>();
-            StuffPower_Insulation_Cold.ResetStuffPower_Insulation_ColdToVanillaRates();
+            return;
         }
+
+        customStuffPower_Insulation_ColdKeys = [];
+        customStuffPower_Insulation_ColdValues = [];
+        CustomStuffPower_Insulation_Cold = new Dictionary<string, float>();
+        StuffPower_Insulation_Cold.ResetStuffPower_Insulation_ColdToVanillaRates();
     }
 
     public bool HasCustomValues(string type = null)
